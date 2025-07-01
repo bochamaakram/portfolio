@@ -1,0 +1,108 @@
+.about {
+  background-color: rgba(58, 134, 255, 0.05);
+  text-align: center; /* Added for text centering */
+}
+
+.dark .about {
+  background-color: rgba(58, 134, 255, 0.1);
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Added for horizontal centering */
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-direction: column; /* Changed to column by default */
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the image */
+}
+
+.about-image img {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 100%; /* Ensure image doesn't overflow */
+}
+
+.about-content {
+  flex: 1;
+  width: 100%;
+  max-width: 800px; /* Added for better content width */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content */
+}
+
+.about-content h2 {
+  text-align: center; /* Changed from left to center */
+  width: 100%;
+}
+
+.about-content h2::after {
+  left: 50%; /* Changed from left: 0 */
+  transform: translateX(-50%); /* Added for perfect centering */
+}
+
+.about-content p {
+  margin-bottom: 1.5rem;
+  text-align: center; /* Center paragraph text */
+}
+
+.about-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+  width: 100%;
+  justify-items: center; /* Center grid items */
+}
+
+.about-details h4 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  text-align: center; /* Center heading text */
+}
+
+@media (min-width: 993px) {
+  .about-container {
+    flex-direction: row; /* Switch to row layout on larger screens */
+  }
+  
+  /* Optional: If you want content aligned left on desktop */
+  /* .about-content {
+    align-items: flex-start;
+  }
+  .about-content h2,
+  .about-content p {
+    text-align: left;
+  }
+  .about-content h2::after {
+    left: 0;
+    transform: none;
+  }
+  .about-details {
+    justify-items: start;
+  } */
+}
+.dark .about {
+    background-color: rgb(22 0 39);
+}
+.exp{
+    color: var(--gray-color);
+}
+.dark .exp{
+    color: #ffffff;
+}
+.dark p{
+    color: #ffffff;
+}
+@media (max-width: 576px) {
+  .about-details {
+    grid-template-columns: 1fr;
+  }
+}
