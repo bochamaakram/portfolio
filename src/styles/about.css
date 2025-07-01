@@ -6,7 +6,9 @@
 .dark .about {
   background-color: rgba(58, 134, 255, 0.1);
 }
-
+.about h4 {
+    color: #a257fa;
+}
 .about-container {
   display: flex;
   align-items: center;
@@ -63,7 +65,6 @@
 }
 
 .about-details h4 {
-  color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-align: center; /* Center heading text */
 }

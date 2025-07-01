@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { FiSend, FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 import '../styles/contact.css';
 
@@ -9,32 +8,42 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    emailjs
-      .sendForm(
-        'service_id',
-        'template_id',
-        form.current,
-        'user_id'
-      )
-      .then(
-        (result) => {
-          setMessage({ text: 'Message sent successfully!', type: 'success' });
-          form.current.reset();
-          setIsSubmitting(false);
-          setTimeout(() => setMessage({ text: '', type: '' }), 5000);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          setMessage({
-            text: 'Failed to send message. Please try again.',
-            type: 'error',
-          });
-          setIsSubmitting(false);
-        }
-      );
+        body: JSON.stringify({
+          access_key: "fff8147f-22c9-46cc-9251-4af470db95f5", // Replace with your actual access key
+          name: form.current.user_name.value,
+          email: form.current.user_email.value,
+          subject: form.current.user_subject.value,
+          message: form.current.message.value,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setMessage({ text: 'Message sent successfully!', type: 'success' });
+        form.current.reset();
+      } else {
+        throw new Error(result.message || "Failed to send message");
+      }
+    } catch (error) {
+      setMessage({
+        text: error.message || 'Failed to send message. Please try again.',
+        type: 'error',
+      });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setMessage({ text: '', type: '' }), 5000);
+    }
   };
 
   return (
@@ -73,7 +82,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4>Location</h4>
-                <p>Marrakech ,Morocco</p>
+                <p>Marrakech, Morocco</p>
               </div>
             </div>
           </div>
