@@ -1,7 +1,8 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useFBX } from '@react-three/drei';
 import { Suspense, useState, useEffect } from 'react';
-//import '../styles/3dLoader.css';
+import '../styles/3dLoader.css';
+import { div } from 'framer-motion/client';
 
 const Model = () => {
   return (
@@ -15,15 +16,7 @@ const Model = () => {
 const Loader = () => {
   return (
     <div className="loader-container">
-      <div className="loader-text">Loading...</div>
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <Suspense fallback={null}>
-          <Model />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
-        </Suspense>
-      </Canvas>
+      <div className="spinner"></div>
     </div>
   );
 };
