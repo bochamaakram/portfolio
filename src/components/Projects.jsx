@@ -7,6 +7,7 @@ import project02 from '../assets/02.png';
 import project03 from '../assets/03.jpg';
 import project04 from '../assets/04.jpg';
 import project05 from '../assets/05.png';
+import project06 from '../assets/06.png';
 
 const projects = [
   {
@@ -49,6 +50,15 @@ const projects = [
     tags: ['React', 'API', 'larvel', 'vercel', 'javascript'],
     image:  project05,
     live: 'https://camialu.vercel.app/',
+  },
+  {
+    id: 6,
+    title: 'irshade',
+    description: 'a comprehensive platform designed to help users deepen their understanding of Islam. Our site provides a variety of resources, including Quran readings, Islamic learning materials, and a community support section for seeking guidance from knowledgeable individuals.',
+    tags: ['scrum', 'Backend', 'API', 'PHP'],
+    image:  project06,
+    github: 'https://github.com/bochamaakram/project-ajile',
+    live: 'https://irshade.wuaze.com/?i=2',
   },
 ];
 

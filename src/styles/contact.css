@@ -20,7 +20,12 @@
   flex-direction: column;
   gap: 2rem;
 }
-
+.info-item h4{
+    color: #000000c3;
+}
+.dark .info-item h4{
+    color: #ffffffc3;
+}
 .info-item {
   display: flex;
   align-items: flex-start;
