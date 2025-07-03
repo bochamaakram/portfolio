@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Loader from './components/3dLoader';
+import { Analytics } from "@vercel/analytics/react"
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   return (
     <Router>
       <div className={`app ${darkMode ? 'dark' : ''}`}>
+        <Analytics/>
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
         <main>
           <Hero />
