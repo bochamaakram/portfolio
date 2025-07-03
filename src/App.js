@@ -14,8 +14,18 @@ import { Analytics } from "@vercel/analytics/react"
 import './App.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check user's preferred color scheme or localStorage for persisted preference
+    return localStorage.getItem('darkMode') === 'true' || 
+           (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  });
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Persist dark mode preference
+    localStorage.setItem('darkMode', darkMode);
+    document.documentElement.classList.toggle('dark', darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     // Simulate loading delay (remove in production)
@@ -28,7 +38,7 @@ function App() {
   return (
     <Router>
       <div className={`app ${darkMode ? 'dark' : ''}`}>
-        <Analytics/>
+        <Analytics />
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
         <main>
           <Hero />
