@@ -1,9 +1,15 @@
+import React from "react";
 import { motion } from 'framer-motion';
-import '../styles/hero.css';
+import Slider from "./Slider";
+import "../styles/Hero.css";
 
 const Hero = () => {
   return (
-    <section id="home" className="hero">
+    <section className="hero">
+      {/* Background sliders */}
+      <Slider />
+
+      {/* Content */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 50 }}

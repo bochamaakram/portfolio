@@ -1,4 +1,95 @@
 .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero h1 {
+  color: #6c757d;
+}
+.hero > .slider {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+
+.hero > .slider:nth-child(2) {
+  top: 33.33%;
+}
+
+.hero > .slider:nth-child(3) {
+  top: 66.66%;
+}
+
+/* Ensure content stays above sliders */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  width: 100%;
+}
+
+/* Add any additional styling for your hero content here */
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-title-gradient {
+  background: linear-gradient(90deg, #3b82f6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.hero-button-primary,
+.hero-button-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-button-primary {
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  border: none;
+  color: white;
+}
+
+.hero-button-secondary {
+  background: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+.hero-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.hero-button-secondary:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+.hero {
   min-height: 90dvh;
   display: flex;
   align-items: center;
