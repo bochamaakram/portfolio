@@ -8,6 +8,8 @@ import project03 from '../assets/03.jpg';
 import project04 from '../assets/04.jpg';
 import project05 from '../assets/05.png';
 import project06 from '../assets/06.png';
+import project07 from '../assets/07.png';
+import project08 from '../assets/03.jpg';
 
 const projects = [
   {
@@ -59,6 +61,22 @@ const projects = [
     image:  project06,
     github: 'https://github.com/bochamaakram/project-ajile',
     live: 'https://irshade.wuaze.com/?i=2',
+  },
+  {
+    id: 7,
+    title: 'Billing app',
+    description: 'a billing system, built with modern web technologies.',
+    tags: ['React', 'API', 'Express', 'Frontend', 'javascript'],
+    image:  project07,
+    github: 'https://github.com/bochamaakram/billing-app-frontend',
+  },
+  {
+    id: 8,
+    title: 'Billing App Backend',
+    description: 'backend service for the Billing App, built with Node.js and Express.',
+    tags: ['API', 'Express', 'Node.js', 'javascript'],
+    image:  project08,
+    github: 'https://github.com/bochamaakram/billing-app-backend',
   },
 ];
 
