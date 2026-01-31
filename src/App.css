@@ -1,0 +1,271 @@
+:root {
+  --primary-color: #cba6f7;
+  --dark-color: #cdd6f4;
+  --light-color: #1e1e2e;
+  --gray-color: #a6adc8;
+  --secondary-color: #f5c2e7;
+  --card-bg-color: #313244;
+  --success-color: #40a02b;
+  --error-color: #d20f39;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: none;
+}
+
+/* Custom cursor */
+.custom-cursor {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.15s ease-out,
+    height 0.15s ease-out,
+    border-radius 0.2s ease-out,
+    opacity 0.2s ease;
+}
+
+/* Hide cursor on all elements */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+/* Global 3D Globe Background */
+.globe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Starfield Background */
+/* Starfield Background */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 
+  Optimization: Use a larger repeating pattern and animate transform instead of background-position
+  to keep it on the compositor thread. 
+*/
+body::before {
+  /* ... gradients kept same ... */
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(205, 214, 244, 0.9) 50%, transparent 50%),
+    radial-gradient(1px 1px at 20% 50%, rgba(203, 166, 247, 0.8) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 30% 10%, rgba(245, 194, 231, 0.9) 50%, transparent 50%),
+    radial-gradient(1px 1px at 40% 80%, rgba(205, 214, 244, 0.7) 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 30%, rgba(203, 166, 247, 0.8) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 60% 70%, rgba(205, 214, 244, 0.9) 50%, transparent 50%),
+    radial-gradient(1px 1px at 70% 15%, rgba(245, 194, 231, 0.8) 50%, transparent 50%),
+    radial-gradient(1px 1px at 80% 45%, rgba(205, 214, 244, 0.9) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 90% 85%, rgba(203, 166, 247, 0.7) 50%, transparent 50%),
+    radial-gradient(1px 1px at 15% 65%, rgba(205, 214, 244, 0.8) 50%, transparent 50%),
+    radial-gradient(1px 1px at 25% 90%, rgba(245, 194, 231, 0.9) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 35% 35%, rgba(205, 214, 244, 0.8) 50%, transparent 50%),
+    radial-gradient(1px 1px at 45% 55%, rgba(203, 166, 247, 0.7) 50%, transparent 50%),
+    radial-gradient(1px 1px at 55% 5%, rgba(205, 214, 244, 0.9) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 65% 25%, rgba(245, 194, 231, 0.8) 50%, transparent 50%),
+    radial-gradient(1px 1px at 75% 75%, rgba(205, 214, 244, 0.7) 50%, transparent 50%),
+    radial-gradient(1px 1px at 85% 60%, rgba(203, 166, 247, 0.9) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 95% 40%, rgba(205, 214, 244, 0.8) 50%, transparent 50%),
+    radial-gradient(1px 1px at 5% 95%, rgba(245, 194, 231, 0.7) 50%, transparent 50%),
+    radial-gradient(1px 1px at 12% 78%, rgba(205, 214, 244, 0.9) 50%, transparent 50%);
+  background-size: 500px 500px; /* Larger size to reduce repetition */
+  /* Make element larger than screen to allow for translation */
+  width: 200%;
+  height: 200%;
+  animation: moveStars1 60s linear infinite, twinkle 4s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Larger stars layer */
+body::after {
+  /* ... gradients kept same ... */
+  background-image:
+    radial-gradient(2px 2px at 5% 15%, rgba(203, 166, 247, 1) 50%, transparent 50%),
+    radial-gradient(2.5px 2.5px at 18% 40%, rgba(245, 194, 231, 0.9) 50%, transparent 50%),
+    radial-gradient(2px 2px at 28% 75%, rgba(205, 214, 244, 1) 50%, transparent 50%),
+    radial-gradient(3px 3px at 42% 22%, rgba(203, 166, 247, 0.9) 50%, transparent 50%),
+    radial-gradient(2px 2px at 55% 60%, rgba(245, 194, 231, 1) 50%, transparent 50%),
+    radial-gradient(2.5px 2.5px at 68% 88%, rgba(205, 214, 244, 0.9) 50%, transparent 50%),
+    radial-gradient(2px 2px at 78% 35%, rgba(203, 166, 247, 1) 50%, transparent 50%),
+    radial-gradient(3px 3px at 88% 12%, rgba(245, 194, 231, 0.9) 50%, transparent 50%),
+    radial-gradient(2px 2px at 92% 55%, rgba(205, 214, 244, 1) 50%, transparent 50%),
+    radial-gradient(2.5px 2.5px at 8% 92%, rgba(203, 166, 247, 0.9) 50%, transparent 50%);
+  background-size: 600px 600px;
+  width: 200%;
+  height: 200%;
+  animation: moveStars2 90s linear infinite, twinkle 6s ease-in-out infinite alternate-reverse;
+  will-change: transform;
+}
+
+/* GPU-accelerated movement using transform */
+@keyframes moveStars1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100px, -100px); /* Move slightly */
+  }
+}
+
+@keyframes moveStars2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-150px, -150px);
+  }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.6; }
+}
+
+.app {
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding: 5rem 2rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--gray-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  display: inline-block;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}

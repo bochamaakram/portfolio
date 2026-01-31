@@ -1,0 +1,191 @@
+[
+    {
+        "id": 1,
+        "title": "mp3 from Youtube",
+        "description": "a free tool for downloading mp3 fils from a youtube link",
+        "tags": [
+            "React",
+            "API",
+            "vercel",
+            "javascript"
+        ],
+        "image": "01.png",
+        "github": "https://github.com/bochamaakram/audio-Downloader?tab=readme-ov-file",
+        "live": "https://free-youtube-mp3.netlify.app/"
+    },
+    {
+        "id": 2,
+        "title": "EldenSetup ",
+        "description": "A modern e-commerce platform for high-performance laptops and PC components.",
+        "tags": [
+            "React",
+            "API",
+            "larvel",
+            "vercel",
+            "javascript"
+        ],
+        "image": "02.png",
+        "github": "https://github.com/bochamaakram/EldenSetups"
+    },
+    {
+        "id": 3,
+        "title": "EldenSetup Back",
+        "description": "the backend for EldenSetup .",
+        "tags": [
+            "Laravel",
+            "Backend",
+            "API",
+            "PHP"
+        ],
+        "image": "03.jpg",
+        "github": "https://github.com/bochamaakram/EldenSetups-back"
+    },
+    {
+        "id": 4,
+        "title": "StorageHub",
+        "description": "A Laravel-based storage management system.",
+        "tags": [
+            "Laravel",
+            "Backend",
+            "API",
+            "PHP"
+        ],
+        "image": "04.jpg",
+        "github": "https://github.com/bochamaakram/StorageHub"
+    },
+    {
+        "id": 5,
+        "title": "flash maker",
+        "description": "an AI powered flash card from PDF generator ",
+        "tags": [
+            "React",
+            "API",
+            "typescript ",
+            "vercel",
+            "javascript"
+        ],
+        "image": "05.jpg",
+        "live": "https://flash-maker.netlify.app"
+    },
+    {
+        "id": 6,
+        "title": "irshade",
+        "description": "a comprehensive platform designed to help users deepen their understanding of Islam. Our site provides a variety of resources, including Quran readings, Islamic learning materials, and a community support section for seeking guidance from knowledgeable individuals.",
+        "tags": [
+            "scrum",
+            "Backend",
+            "API",
+            "PHP"
+        ],
+        "image": "06.png",
+        "github": "https://github.com/bochamaakram/project-ajile"
+    },
+    {
+        "id": 7,
+        "title": "Billing app",
+        "description": "a billing system to fill and print out bills.",
+        "tags": [
+            "React",
+            "API",
+            "Express",
+            "Frontend",
+            "javascript"
+        ],
+        "image": "07.png",
+        "github": "https://github.com/bochamaakram/billing-app-frontend"
+    },
+    {
+        "id": 8,
+        "title": "Billing App Backend",
+        "description": "backend service for the Billing App, built with Node.js and Express.",
+        "tags": [
+            "API",
+            "Express",
+            "Node.js",
+            "javascript"
+        ],
+        "image": "03.jpg",
+        "github": "https://github.com/bochamaakram/billing-app-backend"
+    },
+    {
+        "id": 9,
+        "title": "Chatrooms",
+        "description": "a simple chatroom application that allows users to communicate in real-time.",
+        "tags": [
+            "scrum",
+            "Backend",
+            "API",
+            "PHP"
+        ],
+        "image": "09.jpg",
+        "github": "https://github.com/bochamaakram/chat-rooms"
+    },
+    {
+        "id": 10,
+        "title": "voice notes app",
+        "description": "a voice notes app that allows users to record and save their notes.",
+        "tags": [
+            "JavaScript",
+            "html",
+            "css",
+            "javascript"
+        ],
+        "image": "10.png",
+        "github": "https://github.com/bochamaakram/voice-notes-app"
+    },
+    {
+        "id": 11,
+        "title": "Jira Like Task Manager",
+        "description": "Task Manager — Full stack (Express + MongoDB Compass + Vanilla Frontend)",
+        "tags": [
+            "JavaScript",
+            "html",
+            "css",
+            "javascript"
+        ],
+        "image": "11.jpg",
+        "github": "https://github.com/bochamaakram/Jira-Like-Task-Manager"
+    },
+    {
+        "id": 12,
+        "title": "Terminal Solitaire",
+        "description": "basic Solitaire in a terminal like interface ",
+        "tags": [
+            "JavaScript",
+            "html",
+            "css",
+            "javascript"
+        ],
+        "image": "12.png",
+        "github": "https://github.com/bochamaakram/Terminal-Solitaire",
+        "live": "https://terminal-solitaire.netlify.app/"
+    },
+    {
+        "id": 13,
+        "title": "Cats Gallery",
+        "description": "a simple cats gallery application that allows users to view ,adopt, add, edit and search for cats.",
+        "tags": [
+            "javascript",
+            "API",
+            "Express",
+            "Express"
+        ],
+        "image": "13.png",
+        "github": "https://github.com/bochamaakram/Cats-Gallery",
+        "live": "https://cats-gallery-ta3akram.akrambouchama0.workers.dev/"
+    },
+    {
+        "id": 14,
+        "title": "Knowway",
+        "description": "A full-stack web application for managing online courses with user authentication, course marketplace, points system, quizzes, and in-person course search powered by n8n automation.",
+        "tags": [
+            "javascript",
+            "n8n",
+            "API",
+            "Express"
+        ],
+        "image": "14.png",
+        "github": "https://github.com/bochamaakram/Knowway.git",
+        "live": "https://knowway-eight.vercel.app/"
+    }
+]

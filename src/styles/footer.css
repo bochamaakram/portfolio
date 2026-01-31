@@ -1,0 +1,136 @@
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: clamp(2rem, 5vw, 4rem) 0 1rem;
+}
+
+.footer,
+.dark .footer {
+  background-color: var(--light-color);
+}
+
+.dark .footer {
+  background-color: var(--light-color);
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.footer h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+.dark .footer h3 {
+  color: var(--dark-color);
+}
+
+.footer-about p,
+.footer-links a,
+.footer-bottom p {
+  color: var(--dark-color);
+  transition: color 0.3s ease;
+}
+
+.dark .footer-about p,
+.dark .footer-links a,
+.dark .footer-bottom p {
+  color: var(--gray-color);
+}
+
+.footer-about p {
+  line-height: 1.6;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  color: inherit;
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(76, 79, 105, 0.05);
+}
+
+.dark .social-icons a {
+  background: var(--light-color);
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  background: rgba(76, 79, 105, 0.15);
+}
+
+.dark .social-icons a:hover {
+  background: rgba(205, 214, 244, 0.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid rgba(76, 79, 105, 0.1);
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+}
+
+.dark .footer-bottom {
+  border-top-color: rgba(205, 214, 244, 0.1);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-links ul {
+    align-items: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    width: 85%;
+  }
+}

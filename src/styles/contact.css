@@ -1,0 +1,190 @@
+.contact {
+  background-color: rgba(136, 57, 239, 0.05);
+}
+
+.dark .contact {
+  background-color: var(--light-color);
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-item h4 {
+  color: var(--dark-color);
+}
+
+.dark .info-item h4 {
+  color: var(--dark-color);
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(136, 57, 239, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.dark .info-icon {
+  background-color: rgba(136, 57, 239, 0.2);
+}
+
+.info-item h4 {
+  margin-bottom: 0.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.form-message.success {
+  background-color: rgba(64, 160, 43, 0.1);
+  color: var(--success-color);
+}
+
+.form-message.error {
+  background-color: rgba(210, 15, 57, 0.1);
+  color: var(--error-color);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--gray-color);
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  background-color: var(--card-bg-color);
+}
+
+.dark .form-group input,
+.dark .form-group textarea {
+  background-color: var(--card-bg-color);
+  border-color: #45475a;
+  color: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.btn-primary svg {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* WhatsApp Chat Box */
+.whatsapp-box {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg-color);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-header {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.whatsapp-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.whatsapp-body {
+  padding: 1rem;
+}
+
+.whatsapp-body p {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  justify-content: center;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn svg {
+  width: 18px;
+  height: 18px;
+}
