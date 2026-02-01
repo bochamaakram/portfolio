@@ -17,28 +17,31 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none;
+  /* cursor: none; - Removed to restore default cursor */
 }
 
 /* Custom cursor */
 .custom-cursor {
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
-  transition: width 0.15s ease-out,
-    height 0.15s ease-out,
+  /* mix-blend-mode: difference; - accessibilty choice, can keep or remove, removing for colored ring */
+  transition: width 0.1s ease-out,
+    height 0.1s ease-out,
     border-radius 0.2s ease-out,
     opacity 0.2s ease;
+  transform: translate(-50%, -50%);
+  /* Center the circle */
 }
 
-/* Hide cursor on all elements */
-*,
+/* Hide cursor on all elements - REMOVED */
+/* *,
 *::before,
 *::after {
   cursor: none !important;
-}
+} */
 
 /* Global 3D Globe Background */
 .globe-container {
@@ -104,7 +107,8 @@ body::before {
     radial-gradient(1.5px 1.5px at 95% 40%, rgba(205, 214, 244, 0.8) 50%, transparent 50%),
     radial-gradient(1px 1px at 5% 95%, rgba(245, 194, 231, 0.7) 50%, transparent 50%),
     radial-gradient(1px 1px at 12% 78%, rgba(205, 214, 244, 0.9) 50%, transparent 50%);
-  background-size: 500px 500px; /* Larger size to reduce repetition */
+  background-size: 500px 500px;
+  /* Larger size to reduce repetition */
   /* Make element larger than screen to allow for translation */
   width: 200%;
   height: 200%;
@@ -138,8 +142,10 @@ body::after {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
-    transform: translate(-100px, -100px); /* Move slightly */
+    transform: translate(-100px, -100px);
+    /* Move slightly */
   }
 }
 
@@ -147,15 +153,24 @@ body::after {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(-150px, -150px);
   }
 }
 
 @keyframes twinkle {
-  0% { opacity: 0.4; }
-  50% { opacity: 0.9; }
-  100% { opacity: 0.6; }
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }
 
 .app {
