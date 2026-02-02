@@ -28,12 +28,9 @@ html {
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
-  transition: width 0.1s ease-out,
-    height 0.1s ease-out,
-    border-radius 0.2s ease-out,
-    opacity 0.2s ease;
-  transform: translate(-50%, -50%);
-  /* Center the circle */
+  transition: opacity 0.2s ease;
+  transform: translate3d(-50%, -50%, 0);
+  /* Center the circle with hardware acc */
 }
 
 /* Hide cursor on all elements - REMOVED */

@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 const CustomCursor = () => {
+    const cursorRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [displayPosition, setDisplayPosition] = useState({ x: 0, y: 0 });
-    const [cursorStyle, setCursorStyle] = useState({
+
+    // Use refs for all animation values to avoid re-renders
+    const cursorState = useRef({
+        x: 0,
+        y: 0,
         width: 30,
         height: 30,
         borderRadius: '50%',
@@ -11,13 +15,18 @@ const CustomCursor = () => {
         scaleY: 1,
         rotation: 0
     });
-    const [hoveredElement, setHoveredElement] = useState(null);
 
-    // Store target position and velocity in refs for smooth animation
-    const targetPosition = useRef({ x: 0, y: 0 });
+    const targetState = useRef({
+        x: 0,
+        y: 0,
+        width: 30,
+        height: 30,
+        borderRadius: '50%'
+    });
+
     const velocity = useRef({ x: 0, y: 0 });
     const animationRef = useRef(null);
-    const currentPositionRef = useRef({ x: 0, y: 0 });
+    const hoveredElement = useRef(null);
 
     // Calculate cursor deformation based on velocity
     const calculateDeformation = useCallback((vx, vy) => {
@@ -53,85 +62,93 @@ const CustomCursor = () => {
 
     useEffect(() => {
         const handleMouseMove = (e) => {
-            targetPosition.current = { x: e.clientX, y: e.clientY };
-            setIsVisible(true);
+            targetState.current.x = e.clientX;
+            targetState.current.y = e.clientY;
+            if (!isVisible) setIsVisible(true);
         };
 
         const handleMouseLeave = () => setIsVisible(false);
         const handleMouseEnter = () => setIsVisible(true);
 
-        // Handle hover on interactive elements
         const handleElementHover = (e) => {
-            setHoveredElement(e.currentTarget);
+            hoveredElement.current = e.currentTarget;
         };
 
         const handleElementLeave = () => {
-            setHoveredElement(null);
+            hoveredElement.current = null;
         };
 
         // Spring physics animation for jelly effect
-        const stiffness = 0.08;
-        const damping = 0.8;
+        // Increased stiffness and decreased damping for snappier, smoother response
+        const stiffness = 0.15;
+        const damping = 0.75;
+        const resizeSpeed = 0.2; // Smoother size transition
 
         const animate = () => {
-            let targetX, targetY;
+            if (!cursorRef.current) return;
 
-            if (hoveredElement) {
-                // When hovering, move cursor to element center
-                const wrapInfo = wrapAroundElement(hoveredElement);
+            let targetX, targetY, targetWidth, targetHeight, targetRadius;
+
+            if (hoveredElement.current) {
+                const wrapInfo = wrapAroundElement(hoveredElement.current);
                 if (wrapInfo) {
                     targetX = wrapInfo.x;
                     targetY = wrapInfo.y;
-
-                    // Smoothly transition cursor size to wrap element
-                    setCursorStyle(prev => ({
-                        width: prev.width + (wrapInfo.width - prev.width) * 0.15,
-                        height: prev.height + (wrapInfo.height - prev.height) * 0.15,
-                        borderRadius: wrapInfo.borderRadius,
-                        scaleX: 1,
-                        scaleY: 1,
-                        rotation: 0
-                    }));
+                    targetWidth = wrapInfo.width;
+                    targetHeight = wrapInfo.height;
+                    targetRadius = wrapInfo.borderRadius;
                 } else {
-                    targetX = targetPosition.current.x;
-                    targetY = targetPosition.current.y;
+                    targetX = targetState.current.x;
+                    targetY = targetState.current.y;
+                    targetWidth = 30;
+                    targetHeight = 30;
+                    targetRadius = '50%';
                 }
             } else {
-                targetX = targetPosition.current.x;
-                targetY = targetPosition.current.y;
-
-                // Reset to default size when not hovering
-                setCursorStyle(prev => {
-                    const deform = calculateDeformation(velocity.current.x, velocity.current.y);
-                    return {
-                        width: prev.width + (30 - prev.width) * 0.15,
-                        height: prev.height + (30 - prev.height) * 0.15,
-                        borderRadius: '50%',
-                        scaleX: deform.scaleX,
-                        scaleY: deform.scaleY,
-                        rotation: deform.rotation
-                    };
-                });
+                targetX = targetState.current.x;
+                targetY = targetState.current.y;
+                targetWidth = 30;
+                targetHeight = 30;
+                targetRadius = '50%';
             }
 
-            // Calculate spring force
-            const dx = targetX - currentPositionRef.current.x;
-            const dy = targetY - currentPositionRef.current.y;
+            // Smoothly interpolate size
+            cursorState.current.width += (targetWidth - cursorState.current.width) * resizeSpeed;
+            cursorState.current.height += (targetHeight - cursorState.current.height) * resizeSpeed;
 
-            // Apply spring physics
+            // For borderRadius, we can't interpolate easily if it's mixed units, so strictly swapping for now
+            // or we can just stick to targetRadius if we assume transitions are removed
+            cursorState.current.borderRadius = targetRadius;
+
+            // Calculate spring force position
+            const dx = targetX - cursorState.current.x;
+            const dy = targetY - cursorState.current.y;
+
             velocity.current.x += dx * stiffness;
             velocity.current.y += dy * stiffness;
 
-            // Apply damping
             velocity.current.x *= damping;
             velocity.current.y *= damping;
 
-            // Update position
-            const newX = currentPositionRef.current.x + velocity.current.x;
-            const newY = currentPositionRef.current.y + velocity.current.y;
+            cursorState.current.x += velocity.current.x;
+            cursorState.current.y += velocity.current.y;
 
-            currentPositionRef.current = { x: newX, y: newY };
-            setDisplayPosition({ x: newX, y: newY });
+            // Calculate deformation only when strictly following mouse (not hovering element)
+            let scaleX = 1, scaleY = 1, rotation = 0;
+            if (!hoveredElement.current) {
+                const deform = calculateDeformation(velocity.current.x, velocity.current.y);
+                scaleX = deform.scaleX;
+                scaleY = deform.scaleY;
+                rotation = deform.rotation;
+            }
+
+            // Apply styles directly to DOM
+            const { x, y, width, height, borderRadius } = cursorState.current;
+            cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${rotation}deg) scale(${scaleX}, ${scaleY})`;
+            cursorRef.current.style.width = `${width}px`;
+            cursorRef.current.style.height = `${height}px`;
+            cursorRef.current.style.borderRadius = borderRadius;
+            cursorRef.current.style.opacity = isVisible ? 1 : 0;
 
             animationRef.current = requestAnimationFrame(animate);
         };
@@ -142,7 +159,6 @@ const CustomCursor = () => {
         document.addEventListener('mouseleave', handleMouseLeave);
         document.addEventListener('mouseenter', handleMouseEnter);
 
-        // Add hover listeners to interactive elements
         const interactiveElements = document.querySelectorAll('a, button, input, textarea, [role="button"], .btn-primary, .btn-secondary');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', handleElementHover);
@@ -162,20 +178,12 @@ const CustomCursor = () => {
                 el.removeEventListener('mouseleave', handleElementLeave);
             });
         };
-    }, [hoveredElement, calculateDeformation, wrapAroundElement]);
+    }, [calculateDeformation, wrapAroundElement, isVisible]);
 
     return (
         <div
+            ref={cursorRef}
             className="custom-cursor"
-            style={{
-                left: `${displayPosition.x}px`,
-                top: `${displayPosition.y}px`,
-                width: `${cursorStyle.width}px`,
-                height: `${cursorStyle.height}px`,
-                borderRadius: cursorStyle.borderRadius,
-                opacity: isVisible ? 1 : 0,
-                transform: `translate(-50%, -50%) rotate(${cursorStyle.rotation}deg) scaleX(${cursorStyle.scaleX}) scaleY(${cursorStyle.scaleY})`,
-            }}
         />
     );
 };

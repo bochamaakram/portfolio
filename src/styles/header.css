@@ -38,6 +38,8 @@ nav {
 .nav-links li a {
   font-weight: 500;
   position: relative;
+  padding: 2px;
+  border-radius: 5px;
   transition: color 0.3s ease;
 }
 

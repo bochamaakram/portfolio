@@ -32,6 +32,7 @@
 .footer-center a {
   color: var(--gray-color);
   font-size: 1.5rem;
+  border-radius: 50%;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -53,6 +54,8 @@
   color: var(--gray-color);
   font-weight: 600;
   text-decoration: none;
+  padding: 5px;
+  border-radius: 10px;
   font-size: 0.95rem;
   transition: color 0.3s ease;
 }
