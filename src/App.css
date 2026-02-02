@@ -22,12 +22,12 @@ html {
 
 /* Custom cursor */
 .custom-cursor {
-  background-color: transparent;
-  border: 1px solid var(--primary-color);
+  background-color: white;
+  /* border: 1px solid var(--primary-color); - Removed border for better difference effect */
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  /* mix-blend-mode: difference; - accessibilty choice, can keep or remove, removing for colored ring */
+  mix-blend-mode: difference;
   transition: width 0.1s ease-out,
     height 0.1s ease-out,
     border-radius 0.2s ease-out,
