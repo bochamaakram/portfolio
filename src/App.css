@@ -1,10 +1,15 @@
 :root {
-  --primary-color: #cba6f7;
-  --dark-color: #cdd6f4;
-  --light-color: #1e1e2e;
-  --gray-color: #a6adc8;
-  --secondary-color: #f5c2e7;
-  --card-bg-color: #313244;
+  --primary-color: #a855f7;
+  /* Electric Violet */
+  --secondary-color: #4f46e5;
+  /* Deep Indigo */
+  --dark-color: #ffffff;
+  /* Text color */
+  --light-color: #050505;
+  /* Black Background */
+  --gray-color: #9ca3af;
+  /* Light Gray */
+  --card-bg-color: rgba(15, 15, 20, 0.6);
   --success-color: #40a02b;
   --error-color: #d20f39;
 }
@@ -13,6 +18,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Reusable Glassmorphism Class */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 html {

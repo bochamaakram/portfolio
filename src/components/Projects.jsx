@@ -130,7 +130,7 @@ const Projects = () => {
           {currentProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="project-card"
+              className="project-card glass-panel"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}

@@ -57,7 +57,7 @@ const Contact = () => {
       >
         <h2>Get In Touch</h2>
         <div className="contact-content">
-          <div className="contact-info">
+          <div className="contact-info glass-panel" style={{ padding: '2rem' }}>
             <div className="info-item">
               <div className="info-icon">
                 <FiMail />
@@ -86,7 +86,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <form ref={form} onSubmit={sendEmail} className="contact-form">
+          <form ref={form} onSubmit={sendEmail} className="contact-form glass-panel" style={{ padding: '2rem' }}>
             {message.text && (
               <div className={`form-message ${message.type}`}>{message.text}</div>
             )}

@@ -1,5 +1,4 @@
 .about {
-  background-color: rgba(136, 57, 239, 0.05);
   text-align: center;
 }
 
@@ -12,9 +11,7 @@
   align-items: flex-start;
 }
 
-.dark .about {
-  background-color: rgba(136, 57, 239, 0.1);
-}
+
 
 .about h4 {
   color: var(--primary-color);

@@ -6,7 +6,8 @@ const About = () => {
   return (
     <section id="about" className="about">
       <motion.div
-        className="about-container"
+        className="about-container glass-panel"
+        style={{ padding: '2rem' }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}

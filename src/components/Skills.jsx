@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaReact, FaLaravel , FaDatabase } from 'react-icons/fa';
+import { FaReact, FaLaravel, FaDatabase } from 'react-icons/fa';
 import { SiGraphql } from 'react-icons/si';
 import '../styles/skills.css';
 
@@ -25,7 +25,7 @@ const Skills = () => {
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className="skill-card"
+              className="skill-card glass-panel"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
