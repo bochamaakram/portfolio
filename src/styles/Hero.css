@@ -43,10 +43,7 @@
 }
 
 .hero-title-gradient {
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary-color);
 }
 
 .hero-subtitle {
@@ -71,24 +68,25 @@
 }
 
 .hero-button-primary {
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: var(--primary-color);
   border: none;
   color: white;
 }
 
 .hero-button-secondary {
   background: transparent;
-  border: 2px solid #3b82f6;
-  color: #3b82f6;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
 .hero-button-primary:hover {
+  background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(88, 28, 135, 0.4);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .hero-button-secondary:hover {
-  background: rgba(88, 28, 135, 0.2);
+  background: rgba(139, 92, 246, 0.1);
   transform: translateY(-2px);
 }
 

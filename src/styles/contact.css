@@ -129,7 +129,7 @@
 }
 
 .whatsapp-header {
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: #25d366;
   padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
@@ -159,7 +159,7 @@
   width: 100%;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: #25d366;
   color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
