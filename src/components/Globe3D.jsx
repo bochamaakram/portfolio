@@ -1,11 +1,11 @@
 import React, { useMemo, useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, OrbitControls, Html, Sphere } from '@react-three/drei';
+import { Float, OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Import Icons
 import { FaReact, FaNodeJs, FaPython, FaDocker, FaAws } from 'react-icons/fa';
-import { SiTypescript, SiSpringboot, SiPostgresql, SiTailwindcss, SiMongodb, SiNextdotjs, SiRedis, SiPrisma, SiRedux, SiMysql } from 'react-icons/si';
+import { SiTypescript, SiPostgresql, SiTailwindcss, SiMongodb, SiNextdotjs, SiRedis, SiPrisma, SiRedux, SiMysql } from 'react-icons/si';
 import { BiLogoGit } from 'react-icons/bi';
 
 // 1. Individual Skill Item Component
