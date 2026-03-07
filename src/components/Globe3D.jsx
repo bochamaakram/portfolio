@@ -1,290 +1,216 @@
-import React, { useRef, useMemo, useLayoutEffect, Suspense } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, OrbitControls, Text } from '@react-three/drei';
+import { Float, OrbitControls, Html, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Skills to display on the ring with descriptions
-const skillsList = [
-    { name: 'React', desc: 'UI Library' },
-    { name: 'Next.js', desc: 'React Framework' },
-    { name: 'Node.js', desc: 'Runtime' },
-    { name: 'Laravel', desc: 'PHP Framework' },
-    { name: 'MongoDB', desc: 'NoSQL DB' },
-    { name: 'MySQL', desc: 'Relational DB' },
-    { name: 'Docker', desc: 'Containerization' },
-    { name: 'AWS', desc: 'Cloud Services' },
-    { name: 'Redux', desc: 'State Management' },
-    { name: 'Express', desc: 'Node Framework' },
-    { name: 'HTML/CSS', desc: 'Web Fundamentals' },
-    { name: 'Tailwind', desc: 'CSS Framework' },
-    { name: 'NestJS', desc: 'Node Framework' },
-    { name: 'CI/CD', desc: 'DevOps' }
-];
+// Import Icons
+import { FaReact, FaNodeJs, FaPython, FaDocker, FaAws } from 'react-icons/fa';
+import { SiTypescript, SiSpringboot, SiPostgresql, SiTailwindcss, SiMongodb, SiNextdotjs, SiRedis, SiPrisma, SiRedux, SiMysql } from 'react-icons/si';
+import { BiLogoGit } from 'react-icons/bi';
 
-const SkillsRing = ({ radius = 2.8, onHoverSkill }) => {
-    const ringRef = useRef();
-    const [hoveredSkillIndex, setHoveredSkillIndex] = React.useState(null);
-
-    useFrame(() => {
-        if (ringRef.current && hoveredSkillIndex === null) {
-            ringRef.current.rotation.y += 0.003;
-        }
-    });
-
-    const handleHover = (index) => {
-        setHoveredSkillIndex(index);
-        onHoverSkill(true);
-    };
-
-    const handleLeave = () => {
-        setHoveredSkillIndex(null);
-        onHoverSkill(false);
-    };
+// 1. Individual Skill Item Component
+const SkillItem = ({ position, name, IconComponent, color }) => {
+    const [hovered, setHovered] = useState(false);
 
     return (
-        <group ref={ringRef}>
-            {/* Ring circle */}
-            {/* Ring circle removed as per request */}
-
-            {/* Skills labels around the ring */}
-            {skillsList.map((skill, i) => {
-                const angle = (i / skillsList.length) * Math.PI * 2;
-                const x = Math.cos(angle) * radius;
-                const z = Math.sin(angle) * radius;
-
-                return (
-                    <group
-                        key={skill.name}
-                        position={[x, 0, z]}
-                        rotation={[0, -angle + Math.PI / 2, 0]} // Rotate to face outward
-                    >
-                        <Text
-                            color={hoveredSkillIndex === i ? 'white' : '#cba6f7'}
-                            fontSize={0.2}
-                            maxWidth={2}
-                            lineHeight={1}
-                            letterSpacing={0.05}
-                            textAlign="center"
-                            anchorX="center"
-                            anchorY="middle"
-                            onPointerOver={() => handleHover(i)}
-                            onPointerOut={handleLeave}
-                        >
-                            {skill.name}
-                        </Text>
-
-                        {/* Description below title (only visible on hover for cleaner Look) */}
-                        {hoveredSkillIndex === i && (
-                            <Text
-                                position={[0, -0.2, 0]}
-                                color="#a6adc8"
-                                fontSize={0.12}
-                                anchorX="center"
-                                anchorY="top"
-                            >
-                                {skill.desc}
-                            </Text>
-                        )}
-                    </group>
-                );
-            })}
+        <group position={position}>
+            <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+                {/* HTML Icon Representation - sprite={true} keeps it facing the camera */}
+                <Html transform sprite center style={{ pointerEvents: 'auto' }}>
+                    <div
+                        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+                        onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+                        style={{
+                            color: color,
+                            fontSize: hovered ? '1.8rem' : '1.4rem',
+                            filter: hovered ? `drop-shadow(0 0 15px ${color})` : `drop-shadow(0 0 10px ${color}80)`,
+                            transform: hovered ? 'scale(1.1)' : 'scale(1)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer'
+                        }}>
+                        <IconComponent />
+                        {/* Hover Label */}
+                        <div style={{
+                            position: 'absolute',
+                            top: '120%',
+                            opacity: hovered ? 1 : 0,
+                            transform: hovered ? 'translateY(0)' : 'translateY(-10px)',
+                            transition: 'all 0.3s ease',
+                            backgroundColor: '#1e3a8a', // matches secondary navy color
+                            border: `2px solid ${color}`,
+                            color: 'white',
+                            padding: '4px 12px',
+                            borderRadius: '20px',
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            fontFamily: 'Outfit, sans-serif',
+                            whiteSpace: 'nowrap',
+                            letterSpacing: '1px',
+                            boxShadow: `0 4px 10px rgba(0,0,0,0.5)`,
+                            textTransform: 'uppercase',
+                            pointerEvents: 'none' // allow hovering the icon cleanly
+                        }}>
+                            {name}
+                        </div>
+                    </div>
+                </Html>
+            </Float>
         </group>
     );
 };
 
-const Globe = ({ setContainerOpacity }) => {
+// 2. The Cloud Logic (Distributing items on a sphere)
+const Cloud = ({ skills }) => {
+    const count = skills.length;
+    // Increase radius slightly to push icons outside the main wireframe sphere
+    const radius = 5.5;
     const meshRef = useRef();
-    const pointsRef = useRef(); // InstancedMesh ref
-    const [isHoveringSkill, setIsHoveringSkill] = React.useState(false);
+    const groupRef = useRef();
+    const controlsRef = useRef();
 
-    // Create points on the globe surface
-    const points = useMemo(() => {
-        const pts = [];
-        const numPoints = 120;
+    const skillPoints = useMemo(() => {
+        const points = [];
+        const phi = Math.PI * (3 - Math.sqrt(5)); // Golden angle
 
-        for (let i = 0; i < numPoints; i++) {
-            const phi = Math.acos(-1 + (2 * i) / numPoints);
-            const theta = Math.sqrt(numPoints * Math.PI) * phi;
+        for (let i = 0; i < count; i++) {
+            const y = 1 - (i / (count - 1)) * 2; // y goes from 1 to -1
+            const currentRadius = Math.sqrt(1 - y * y);
+            const theta = phi * i;
 
-            const x = Math.cos(theta) * Math.sin(phi);
-            const y = Math.sin(theta) * Math.sin(phi);
-            const z = Math.cos(phi);
+            const x = Math.cos(theta) * currentRadius;
+            const z = Math.sin(theta) * currentRadius;
 
-            pts.push(new THREE.Vector3(x * 1.5, y * 1.5, z * 1.5));
+            points.push(new THREE.Vector3(x * radius, y * radius, z * radius));
         }
-        return pts;
-    }, []);
-
-    // Create connections between nearby points
-    const lines = useMemo(() => {
-        const lineGeometries = [];
-        const threshold = 0.6;
-
-        for (let i = 0; i < points.length; i++) {
-            for (let j = i + 1; j < points.length; j++) {
-                const dist = points[i].distanceTo(points[j]);
-                if (dist < threshold) {
-                    lineGeometries.push([points[i], points[j]]);
-                }
-            }
-        }
-        return lineGeometries;
-    }, [points]);
-
-    // Update InstancedMesh matrices
-    useLayoutEffect(() => {
-        if (pointsRef.current) {
-            const tempObject = new THREE.Object3D();
-            points.forEach((point, i) => {
-                tempObject.position.copy(point);
-                tempObject.scale.set(1, 1, 1);
-                tempObject.updateMatrix();
-                pointsRef.current.setMatrixAt(i, tempObject.matrix);
-            });
-            pointsRef.current.instanceMatrix.needsUpdate = true;
-        }
-    }, [points]);
+        return points;
+    }, [count, radius]);
 
     useFrame((state) => {
-        if (meshRef.current) {
-            // --- Animation & Scroll Logic inside useFrame ---
+        if (!meshRef.current) return;
 
-            // Rotation
-            if (!isHoveringSkill) {
-                meshRef.current.rotation.y += 0.002;
-            }
+        // Spin the inner globe explicitly around its own axis
+        if (groupRef.current) {
+            groupRef.current.rotation.y += 0.002;
+            groupRef.current.rotation.x += 0.001;
+        }
 
-            // Scroll Calculations
-            const scrollY = window.scrollY;
-            const vh = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
+        // 1. Get current scroll and viewport metrics
+        const scrollY = window.scrollY;
+        const vh = window.innerHeight;
 
-            // Transition logic
-            const transitionStart = 0;
-            const transitionEnd = vh * 0.8;
-            const progress = Math.min(Math.max((scrollY - transitionStart) / (transitionEnd - transitionStart), 0), 1);
+        // 2. Calculate progress (0 to 1) over a specific range (top 80% of the screen)
+        const transitionStart = 0;
+        const transitionEnd = vh * 0.8;
+        const progress = Math.min(Math.max((scrollY - transitionStart) / (transitionEnd - transitionStart), 0), 1);
 
-            // Target X and Scale
-            const targetX = 2.5 - (progress * 2.5);
-            const targetScale = 1 + (progress * 0.8);
+        // 3. Define target values based on progress
+        // Moves from x: 8.5 (further right) to x: 0 | Scales from 0.5x to 1.8x
+        const targetX = 8.5 - (progress * 8.5);
+        const targetScale = 0.6 + (progress * 1);
 
-            // Smooth Interpolation
-            meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.04);
-            meshRef.current.position.lerp(new THREE.Vector3(targetX, 0, 0), 0.04);
+        // 4. Smooth Interpolation (Lerping)
+        // 0.04 is the smoothing factor; lower is "laggier/smoother", higher is snappier
+        meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.04);
+        meshRef.current.position.lerp(new THREE.Vector3(targetX, 0, 0), 0.04);
 
-            // Footer Fade Overlay (Communicating back to parent container via ref/callback would be react-y, 
-            // but for performance we can control it here or just assume the parent handles it. 
-            // Better: update the REF to the container directly if passed, or use state responsibly.
-            // Since we want to AVOID state updates that trigger re-renders of the whole tree, 
-            // we should probably just animate the Opacity of the Group itself!)
-
-            const distFromBottom = docHeight - (scrollY + vh);
-            const fadeThreshold = 1200;
-            let opacity = 1;
-            if (distFromBottom < fadeThreshold) {
-                opacity = Math.min(Math.max(distFromBottom / 800, 0), 1);
-            }
-
-            // Apply opacity to the whole group? Or just pass it to setContainerOpacity if provided?
-            // Actually, scaling opacity on the mesh materials is cleaner than DOM opacity updates which cause reflows.
-            // But the container opacity was used to hide it.
-
-            // Let's use a callback Ref approach or just simpler:
-            if (setContainerOpacity) {
-                setContainerOpacity(opacity);
-            }
+        // Ensure controls follows the exact mesh center at all times!
+        if (controlsRef.current) {
+            controlsRef.current.target.copy(meshRef.current.position);
+            controlsRef.current.update();
         }
     });
 
+    // OrbitControls autoRotate takes care of rotating the scene!
     return (
-        <group ref={meshRef} rotation={[0, 0.7, 0]}>
-            {/* Main sphere wireframe */}
-            <Sphere args={[1.5, 32, 32]}>
-                <meshBasicMaterial
-                    color="#cba6f7"
-                    wireframe
-                    transparent
-                    opacity={0.12} // Start opacity, can be modulated if needed
-                />
-            </Sphere>
+        <group ref={meshRef}>
+            <group ref={groupRef}>
+                {/* Remove central wireframe sphere */}
 
-            {/* Skills Ring - Radius adjusted for balance */}
-            <SkillsRing radius={2.5} onHoverSkill={setIsHoveringSkill} />
+                {skills.map((skill, idx) => (
+                    <SkillItem
+                        key={skill.name}
+                        position={skillPoints[idx]}
+                        name={skill.name}
+                        IconComponent={skill.icon}
+                        color={skill.color}
+                    />
+                ))}
+            </group>
 
-            {/* Points on the globe - InstancedMesh */}
-            <instancedMesh ref={pointsRef} args={[null, null, points.length]}>
-                <sphereGeometry args={[0.02, 6, 6]} />
-                <meshBasicMaterial color="#cba6f7" transparent opacity={0.6} />
-            </instancedMesh>
-
-            {/* Connection lines */}
-            {lines.map((line, i) => (
-                <line key={`line-${i}`}>
-                    <bufferGeometry>
-                        <bufferAttribute
-                            attach="attributes-position"
-                            count={2}
-                            array={new Float32Array([
-                                line[0].x, line[0].y, line[0].z,
-                                line[1].x, line[1].y, line[1].z
-                            ])}
-                            itemSize={3}
-                        />
-                    </bufferGeometry>
-                    <lineBasicMaterial color="#cba6f7" transparent opacity={0.2} />
-                </line>
-            ))}
-
-            {/* Inner core */}
-            <Sphere args={[1.3, 32, 32]}>
-                <meshBasicMaterial
-                    color="#1e1e2e"
-                    transparent
-                    opacity={0.7}
-                />
-            </Sphere>
+            {/* Added OrbitControls directly in the Cloud so it targets the moving meshRef */}
+            <OrbitControls
+                ref={controlsRef}
+                enablePan={false}
+                enableZoom={false}
+                enableRotate={true}
+                autoRotate
+                autoRotateSpeed={0.5}
+                makeDefault
+            />
         </group>
     );
 };
 
+// 3. Main Scene Export
 const Globe3D = () => {
-    // We keep one bit of state just for the container opacity if effectively inexpensive,
-    // OR we can use a ref to the container div to avoid re-rendering the Canvas.
-    const containerRef = useRef();
-
-    const setContainerOpacity = (opacity) => {
-        if (containerRef.current) {
-            containerRef.current.style.opacity = opacity * 0.5; // * 0.5 because original was 0.5
-            // Also pointer events logic could go here if needed
-        }
-    };
+    // We map icons explicitly
+    const mySkills = [
+        { name: 'React', color: '#61DAFB', icon: FaReact },
+        { name: 'TypeScript', color: '#3178C6', icon: SiTypescript },
+        { name: 'Node.js', color: '#339933', icon: FaNodeJs },
+        { name: 'Next.js', color: '#ffffff', icon: SiNextdotjs },
+        { name: 'PostgreSQL', color: '#4169E1', icon: SiPostgresql },
+        { name: 'Python', color: '#3776AB', icon: FaPython },
+        { name: 'Git', color: '#F05032', icon: BiLogoGit },
+        { name: 'MongoDB', color: '#47A248', icon: SiMongodb },
+        { name: 'Tailwind', color: '#06B6D4', icon: SiTailwindcss },
+        { name: 'Docker', color: '#2496ED', icon: FaDocker },
+        { name: 'AWS', color: '#FF9900', icon: FaAws },
+        { name: 'Redux', color: '#764ABC', icon: SiRedux },
+        { name: 'Redis', color: '#ff0000ff', icon: SiRedis },
+        { name: 'Prisma', color: '#6DB33F', icon: SiPrisma },
+        { name: 'mysql', color: '#3f7fb3ff', icon: SiMysql }
+    ];
 
     return (
-        <div ref={containerRef} className="globe-container" style={{ pointerEvents: 'none', opacity: 0.5, transition: 'opacity 0.1s linear' }}>
-            <Canvas
-                camera={{ position: [0, 4, 7], fov: 50 }}
-                style={{ background: 'transparent', pointerEvents: 'auto' }} // Always auto, we control occlusion in CSS or components
-                gl={{ alpha: true, antialias: true }}
+        <div
+            className="globe-container-wrapper"
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 0,
+                pointerEvents: 'none',
+            }}
+        >
+            <div
+                style={{
+                    width: '100%',
+                    height: '100dvh',
+                    background: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
             >
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={0.8} />
+                <Canvas
+                    camera={{ position: [0, 0, 16], fov: 45 }}
+                    style={{ background: 'transparent', pointerEvents: 'auto' }}
+                >
+                    <ambientLight intensity={0.5} />
+                    <pointLight position={[10, 10, 10]} intensity={1} />
 
-                <Suspense fallback={null}>
-                    <Globe setContainerOpacity={setContainerOpacity} />
-                </Suspense>
-
-                <OrbitControls
-                    enableZoom={false}
-                    enablePan={false}
-                    enableRotate={true}
-                    autoRotate={false}
-                    enableDamping={true}
-                    dampingFactor={0.05}
-                    rotateSpeed={0.5}
-                />
-            </Canvas>
+                    <Cloud skills={mySkills} />
+                </Canvas>
+            </div>
         </div>
     );
-};
+}
 
 export default Globe3D;

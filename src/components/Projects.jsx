@@ -43,10 +43,11 @@ const projects = projectsData.map((project) => ({
 }));
 
 const Projects = () => {
+  const [hoveredProject, setHoveredProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState(projects);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 4;
 
   const projectFilters = ['All', 'React', 'Laravel', 'API', 'PHP', 'javascript', 'n8n'];
 
@@ -126,40 +127,72 @@ const Projects = () => {
           </div>
         )}
         <br />
-        <div className="projects-grid">
+        <div className="projects-grid redesign-v2">
+          <div className="preview-card glass-panel">
+            <div className="center-content">
+              {hoveredProject ? (
+                <motion.div
+                  key={hoveredProject.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="hover-display"
+                >
+                  <img src={hoveredProject.image} alt={hoveredProject.title} />
+                  <div className="hover-info">
+                    <h3>{hoveredProject.title}</h3>
+                  </div>
+                </motion.div>
+              ) : (
+                <div className="default-text">
+                  <h2>My Projects</h2>
+                </div>
+              )}
+            </div>
+            <div className="card-shine"></div>
+          </div>
+          
           {currentProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="project-card glass-panel"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="project-card-v2 glass-panel"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              onMouseEnter={() => setHoveredProject(project)}
+              onMouseLeave={() => setHoveredProject(null)}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+                e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+              }}
             >
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-                <div className="project-links">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noreferrer">
-                      <FiGithub />
-                    </a>
-                  )}
-                  {project.live && (
-                    <a href={project.live} target="_blank" rel="noreferrer">
-                      <FiExternalLink />
-                    </a>
-                  )}
-                </div>
-              </div>
               <div className="project-details">
-                <h3>{project.title}</h3>
+                <div className="project-header">
+                  <h3>{project.title}</h3>
+                  <div className="project-mini-links">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noreferrer">
+                        <FiGithub />
+                      </a>
+                    )}
+                    {project.live && (
+                      <a href={project.live} target="_blank" rel="noreferrer">
+                        <FiExternalLink />
+                      </a>
+                    )}
+                  </div>
+                </div>
                 <p>{project.description}</p>
                 <div className="project-tags">
-                  {project.tags.map((tag) => (
+                  {project.tags.slice(0, 3).map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
               </div>
+              <div className="card-shine"></div>
             </motion.div>
           ))}
         </div>

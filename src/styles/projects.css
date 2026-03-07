@@ -1,5 +1,5 @@
 .projects {
-  background-color: rgba(136, 57, 239, 0.05);
+  background-color: rgba(88, 28, 135, 0.05);
 }
 
 .dark .projects {
@@ -50,17 +50,25 @@ h3 {
   color: white;
 }
 
-.projects-grid {
+.projects-grid.redesign-v2 {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-auto-rows: 250px;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .project-card {
-  border-radius: 16px;
-  max-width: 25em;
+  position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .project-card {
@@ -68,8 +76,11 @@ h3 {
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.2);
 }
 
 .project-image {
@@ -119,7 +130,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(205, 214, 244, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
@@ -148,7 +159,7 @@ h3 {
 }
 
 .project-tags span {
-  background-color: rgba(136, 57, 239, 0.1);
+  background-color: rgba(88, 28, 135, 0.2);
   color: var(--dark-color);
   padding: 0.3rem 0.8rem;
   border-radius: 50px;
@@ -157,8 +168,152 @@ h3 {
 }
 
 .dark .project-tags span {
-  background-color: rgba(136, 57, 239, 0.2);
-  color: var(--dark-color);
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #fff;
+}
+
+/* Bento Spanning & Positioning - Redesign V2 */
+.projects-grid.redesign-v2 .preview-card {
+  grid-area: 1 / 1 / 3 / 2;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(168, 85, 247, 0.05) !important;
+  border: 2px dashed rgba(168, 85, 247, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.project-card-v2 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.5rem;
+}
+
+.project-card-v2:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+/* 2x2 Grid Placement */
+.projects-grid.redesign-v2 .project-card-v2:nth-of-type(1) { grid-area: 1 / 2 / 2 / 3; }
+.projects-grid.redesign-v2 .project-card-v2:nth-of-type(2) { grid-area: 1 / 3 / 2 / 4; }
+.projects-grid.redesign-v2 .project-card-v2:nth-of-type(3) { grid-area: 2 / 2 / 3 / 3; }
+.projects-grid.redesign-v2 .project-card-v2:nth-of-type(4) { grid-area: 2 / 3 / 3 / 4; }
+
+.center-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.default-text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.8;
+}
+
+.hover-display {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hover-display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.hover-info {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hover-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-mini-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.project-mini-links a {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.project-mini-links a:hover {
+  color: #a855f7;
+  transform: translateY(-2px);
+}
+
+.project-card-v2 .project-details h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.project-card-v2 .project-details p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Eye Candy */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(168, 85, 247, 0.15),
+    transparent 40%);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.project-card-v2:hover .card-shine,
+.preview-card:hover .card-shine {
+  opacity: 1;
 }
 
 /* Pagination Styles */
@@ -198,20 +353,62 @@ h3 {
   cursor: not-allowed;
 }
 
+@media (max-width: 1200px) {
+  .projects-grid.redesign-v2 {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .projects-grid.redesign-v2 .preview-card {
+    grid-area: span 2 / 1;
+  }
+  .projects-grid.redesign-v2 .project-card-v2 {
+    grid-area: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .projects-grid {
+  .projects-grid.redesign-v2 {
     grid-template-columns: 1fr;
+    grid-auto-rows: auto;
   }
 
-  .projects-grid {
+  .preview-card {
+    grid-area: auto !important;
+    height: 300px;
+    order: -1;
+  }
+  
+  .project-card-v2 {
+    grid-area: auto !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .projects-grid.redesign {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .projects-grid.redesign {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid.redesign {
     grid-template-columns: 1fr;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
+    grid-auto-rows: auto;
   }
 
-  .project-image {
-    height: 200px;
+  .bento-side-tall,
+  .bento-center {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .bento-center {
+    order: -1; /* Keep center display at top on mobile */
+    height: 300px;
   }
 }

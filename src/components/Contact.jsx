@@ -57,7 +57,7 @@ const Contact = () => {
       >
         <h2>Get In Touch</h2>
         <div className="contact-content">
-          <div className="contact-info glass-panel" style={{ padding: '2rem' }}>
+          <div className="contact-info" style={{ padding: '2rem' }}>
             <div className="info-item">
               <div className="info-icon">
                 <FiMail />

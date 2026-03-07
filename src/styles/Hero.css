@@ -84,11 +84,11 @@
 
 .hero-button-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(136, 57, 239, 0.3);
+  box-shadow: 0 4px 12px rgba(88, 28, 135, 0.4);
 }
 
 .hero-button-secondary:hover {
-  background: rgba(136, 57, 239, 0.1);
+  background: rgba(88, 28, 135, 0.2);
   transform: translateY(-2px);
 }
 
@@ -112,14 +112,11 @@
 .hero-content {
   flex: 1;
   z-index: 10;
-  /* Increased z-index to be above globe canvas if needed for clicks */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Left align items */
   max-width: 50%;
-  /* limit width */
-  /* Center content horizontally */
+  padding: 3rem;
 }
 
 .hero-content h1 {

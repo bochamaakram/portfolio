@@ -1,84 +1,164 @@
+.skills {
+  padding: 8rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
 .skills-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(to right, #fff, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 1.5rem;
 }
 
 .skill-card {
-  border-radius: 16px;
-  max-width: 20em;
-  padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.skill-card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .skill-icon {
-  font-size: 3rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: #a855f7;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
 }
 
 .skill-card h3 {
-  margin-bottom: 1.5rem;
   font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
 }
 
-.skillitems {
-  color: var(--primary-color);
-}
-
-.skill-card ul {
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
-.skill-card li {
-  background-color: rgba(136, 57, 239, 0.1);
-  color: var(--primary-color);
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
+.skill-item {
+  background: rgba(168, 85, 247, 0.1);
+  color: #c084fc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
   font-weight: 500;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  transition: all 0.3s ease;
 }
 
-/* Dark mode styles */
-.dark h2 {
-  color: var(--dark-color);
+.skill-card:hover .skill-item {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #fff;
 }
 
-.dark .skills h4 {
-  color: var(--dark-color);
+/* Bento Spanning */
+.bento-large {
+  grid-column: span 2;
+  grid-row: span 3;
 }
 
-h4 {
-  color: var(--dark-color);
+.bento-medium {
+  grid-column: span 2;
+  grid-row: span 1;
 }
 
-.dark .skill-card {
-  color: #ffffff;
+.bento-small {
+  grid-column: span 1;
+  grid-row: span 1;
 }
 
-.dark .skill-card li {
-  background-color: rgba(136, 57, 239, 0.2);
+/* Eye Candy */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(168, 85, 247, 0.1),
+      transparent 40%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.skill-card:hover .card-shine {
+  opacity: 1;
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
   .skills-grid {
     grid-template-columns: 1fr;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
+    grid-auto-rows: auto;
+  }
+
+  .bento-large,
+  .bento-medium,
+  .bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
   }
 }

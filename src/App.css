@@ -1,15 +1,17 @@
 :root {
-  --primary-color: #a855f7;
-  /* Electric Violet */
-  --secondary-color: #4f46e5;
-  /* Deep Indigo */
+  --primary-color: #581c87;
+  /* Dark Purple */
+  --secondary-color: #1e3a8a;
+  /* Navy Blue */
+  --accent-color: #991b1b;
+  /* Deep Red */
   --dark-color: #ffffff;
   /* Text color */
-  --light-color: #050505;
-  /* Black Background */
+  --light-color: #020205;
+  /* Very Dark Background */
   --gray-color: #9ca3af;
   /* Light Gray */
-  --card-bg-color: rgba(15, 15, 20, 0.6);
+  --card-bg-color: transparent;
   --success-color: #40a02b;
   --error-color: #d20f39;
 }
@@ -22,16 +24,17 @@
 
 /* Reusable Glassmorphism Class */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  background-color: rgba(2, 2, 5, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(88, 28, 135, 0.2);
+  border-radius: 20px;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
   /* cursor: none; - Removed to restore default cursor */
 }
 
@@ -189,6 +192,28 @@ body::after {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  pointer-events: none;
+}
+
+main,
+section {
+  pointer-events: none;
+}
+
+.hero-content,
+.about-container,
+.skills-container,
+.projects-container,
+.contact-container,
+header,
+footer,
+.scroll-to-top,
+a,
+button,
+input,
+textarea,
+select {
+  pointer-events: auto;
 }
 
 section {
@@ -246,7 +271,7 @@ img {
 
 .btn-primary {
   display: inline-block;
-  background-color: var(--primary-color);
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   color: white;
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
@@ -258,7 +283,8 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(153, 27, 27, 0.4);
+  background: var(--accent-color);
 }
 
 .btn-secondary {
@@ -272,7 +298,8 @@ img {
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
   color: white;
 }
 
