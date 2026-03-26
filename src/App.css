@@ -1,13 +1,13 @@
 :root {
-  --primary-color: #581c87;
-  /* Dark Purple */
-  --secondary-color: #1e3a8a;
-  /* Navy Blue */
-  --accent-color: #991b1b;
-  /* Deep Red */
-  --dark-color: #ffffff;
+  --primary-color: #9400D3;
+  /* Electric Violet */
+  --secondary-color: #6A0DAD;
+  /* Deep Purple */
+  --accent-color: #39FF14;
+  /* Neon Green */
+  --dark-color: #F5F5F5;
   /* Text color */
-  --light-color: #020205;
+  --light-color: #000000;
   /* Very Dark Background */
   --gray-color: #9ca3af;
   /* Light Gray */
@@ -24,11 +24,11 @@
 
 /* Reusable Glassmorphism Class */
 .glass-panel {
-  background-color: rgba(2, 2, 5, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(88, 28, 135, 0.2);
+  border: 1px solid rgba(148, 0, 211, 0.2);
   border-radius: 20px;
 }
 
