@@ -23,6 +23,7 @@ const Hero = () => {
                         repeat={0}
                         cursor={false}
                     />
+                    <span className="sr-only" style={{ display: 'none' }}>Akram Bouchama</span>
                 </h1>
                 <h2>
                     <TypeAnimation
