@@ -9,7 +9,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Loader from './components/3dLoader';
-import CustomCursor from './components/CustomCursor';
 import Globe3D from './components/Globe3D';
 import ScrollReveal from './components/ScrollReveal';
 import './App.css';
@@ -26,7 +25,6 @@ function App() {
 
   return (
     <Router>
-      <CustomCursor />
       {/* Global 3D Globe Background */}
       <Globe3D />
       <div className="app">

@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
 import '../styles/footer.css';
 
 const Footer = () => {
@@ -7,6 +8,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-left">
           <p>&copy; {new Date().getFullYear()} Akram Bouchama. All rights reserved.</p>
+          <p>my desktop like portfolio <a href="https://www.space.akrambouchama.com/"><FiExternalLink /></a></p>
         </div>
 
         <div className="footer-center">
@@ -53,7 +55,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 };
 
