@@ -5,32 +5,29 @@ import "../styles/Hero.css";
 const Hero = () => {
     return (
         <section className="hero">
-            {/* Content */}
             <motion.div
                 className="hero-content"
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                <h1 className='hi'>
-                    Hi, I'm <TypeAnimation
-                        sequence={[
-                            'Bouchama Akram',
-                            3000,
-                        ]}
-                        wrapper="span"
-                        speed={20}
-                        repeat={0}
-                        cursor={false}
-                    />
-                    <span className="sr-only" style={{ display: 'none' }}>Akram Bouchama</span>
+                <h1>
+                    Hi, I'm <span>
+                        <TypeAnimation
+                            sequence={['Bouchama Akram', 1000]}
+                            wrapper="span"
+                            speed={20}
+                            repeat={0}
+                            cursor={false}
+                        />
+                    </span>
                 </h1>
                 <h2>
                     <TypeAnimation
                         sequence={[
                             'Full Stack Web Developer',
                             2000,
-                            'tech enthusiast',
+                            'Creative Problem Solver',
                             2000,
                         ]}
                         wrapper="span"
@@ -39,11 +36,11 @@ const Hero = () => {
                     />
                 </h2>
                 <div className="hero-buttons">
-                    <a href="#contact" className="btn-primary">
-                        Hire Me
-                    </a>
-                    <a href="#projects" className="btn-secondary">
+                    <a href="#projects" className="btn-primary">
                         View Work
+                    </a>
+                    <a href="#contact" className="btn-secondary">
+                        Get In Touch
                     </a>
                 </div>
             </motion.div>

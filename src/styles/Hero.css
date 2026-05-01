@@ -1,213 +1,56 @@
 .hero {
   position: relative;
-  height: 100dvh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background-color: transparent;
-}
-
-
-.hero h1 {
-  color: var(--gray-color);
-}
-
-.hero>.slider {
-  position: absolute;
-  z-index: 1;
-  opacity: 0.2;
-}
-
-
-.hero>.slider:nth-child(2) {
-  top: 33.33%;
-}
-
-.hero>.slider:nth-child(3) {
-  top: 66.66%;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
   text-align: center;
-  padding: 2rem;
-  color: white;
-  width: 100%;
-}
-
-.hero-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hero-title-gradient {
-  color: var(--primary-color);
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.hero-button-primary,
-.hero-button-secondary {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.hero-button-primary {
-  background: var(--primary-color);
-  border: none;
-  color: white;
-}
-
-.hero-button-secondary {
-  background: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-}
-
-.hero-button-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-}
-
-.hero-button-secondary:hover {
-  background: rgba(139, 92, 246, 0.1);
-  transform: translateY(-2px);
-}
-
-.hero {
-  min-height: 90dvh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  /* Changed to flex-start for left alignment */
-  /* Added for horizontal centering */
-  padding: 0 4rem;
-  /* Increased padding */
-  padding-top: 80px;
-  background-color: transparent;
-  position: relative;
+  padding: 0 1.5rem;
   overflow: hidden;
-  text-align: left;
-  /* Changed to left */
 }
 
 .hero-content {
-  flex: 1;
+  position: relative;
   z-index: 10;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  max-width: 50%;
-  padding: 3rem;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .hero-content h1 {
-  margin-bottom: 1rem;
-  width: 100%;
-  /* Ensure full width for proper centering */
+  margin: 0;
+  color: var(--text-color);
 }
 
 .hero-content h1 span {
-  color: var(--primary-color);
-}
-
-.dark .hi {
-  color: var(--dark-color);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: var(--gray-color);
-  font-weight: 500;
-  width: 100%;
-  /* Ensure full width for proper centering */
-}
-
-.hero-content p {
-  max-width: 500px;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  color: var(--text-muted);
+  font-weight: 400;
+  margin: 0;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  gap: 1rem;
-  justify-content: flex-start;
-  /* Left align buttons */
-  /* Center buttons */
-}
-
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-image img {
-  max-height: 600px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 992px) {
-  .hero {
-    min-height: 90dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Added for horizontal centering */
-    padding: 0 2rem;
-    padding-top: 80px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    /* Center on mobile */
-    /* Added for text centering */
-  }
-
-  .hero-content {
-    margin-bottom: 3rem;
-    align-items: center;
-    /* Center on mobile */
-    max-width: 100%;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-    /* Center on mobile */
-  }
-
-  .hero-image img {
-    max-height: 400px;
-  }
+  margin-top: 2rem;
 }
 
 @media (max-width: 576px) {
   .hero-buttons {
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 300px;
   }
-
-  .hero-image img {
-    max-height: 300px;
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
   }
 }

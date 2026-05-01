@@ -4,88 +4,39 @@ import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import '../styles/projects.css';
 import projectsData from '../data/projects.json';
 
-// Image imports
-import project01 from '../assets/01.png';
-import project02 from '../assets/02.png';
-import project03 from '../assets/03.jpg';
-import project04 from '../assets/04.jpg';
-import project05 from '../assets/05.jpg';
-import project06 from '../assets/06.png';
-import project07 from '../assets/07.png';
-import project09 from '../assets/09.jpg';
-import project10 from '../assets/10.png';
-import project11 from '../assets/11.jpg';
-import project12 from '../assets/12.png';
-import project13 from '../assets/13.png';
-import project14 from '../assets/14.png';
-
-// Map image filenames to imported assets
-const imageMap = {
-  '01.png': project01,
-  '02.png': project02,
-  '03.jpg': project03,
-  '04.jpg': project04,
-  '05.jpg': project05,
-  '06.png': project06,
-  '07.png': project07,
-  '09.jpg': project09,
-  '10.png': project10,
-  '11.jpg': project11,
-  '12.png': project12,
-  '13.png': project13,
-  '14.png': project14,
-};
-
-// Map projects data with resolved images
-const projects = projectsData.map((project) => ({
-  ...project,
-  image: imageMap[project.image],
-}));
-
 const Projects = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [filteredProjects, setFilteredProjects] = useState(projects);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
 
   const projectFilters = ['All', 'React', 'Laravel', 'API', 'PHP', 'javascript', 'n8n'];
 
-  const handleFilter = (filter) => {
-    setActiveFilter(filter);
-    setCurrentPage(1);
-    if (filter === 'All') {
-      setFilteredProjects(projects);
-    } else {
-      const filtered = projects.filter((project) =>
-        project.tags.includes(filter)
-      );
-      setFilteredProjects(filtered);
-    }
-  };
+  const filteredProjects = activeFilter === 'All'
+    ? projectsData
+    : projectsData.filter(project => project.tags.includes(activeFilter));
 
   // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProjects = filteredProjects.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(filteredProjects.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const handleFilter = (filter) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
 
   return (
     <section id="projects" className="projects">
       <motion.div
         className="projects-container"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
         <h2>My Projects</h2>
+
         <div className="project-filters">
           {projectFilters.map((filter) => (
             <button
@@ -98,59 +49,7 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Pagination Controls */}
-        {filteredProjects.length > itemsPerPage && (
-          <div className="pagination">
-            <button
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="page-btn"
-            >
-              Prev
-            </button>
-            {pageNumbers.map(number => (
-              <button
-                key={number}
-                onClick={() => paginate(number)}
-                className={`page-btn ${currentPage === number ? 'active' : ''}`}
-              >
-                {number}
-              </button>
-            ))}
-            <button
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === pageNumbers.length}
-              className="page-btn"
-            >
-              Next
-            </button>
-          </div>
-        )}
-        <br />
-        <div className="projects-grid redesign-v2">
-          <div className="preview-card glass-panel">
-            <div className="center-content">
-              {hoveredProject ? (
-                <motion.div
-                  key={hoveredProject.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="hover-display"
-                >
-                  <img src={hoveredProject.image} alt={hoveredProject.title} />
-                  <div className="hover-info">
-                    <h3>{hoveredProject.title}</h3>
-                  </div>
-                </motion.div>
-              ) : (
-                <div className="default-text">
-                  <h2>My Projects</h2>
-                </div>
-              )}
-            </div>
-            <div className="card-shine"></div>
-          </div>
-          
+        <div className="projects-grid">
           {currentProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -159,43 +58,59 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              onMouseEnter={() => setHoveredProject(project)}
-              onMouseLeave={() => setHoveredProject(null)}
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-                e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-              }}
             >
-              <div className="project-details">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                  <div className="project-mini-links">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noreferrer">
-                        <FiGithub />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a href={project.live} target="_blank" rel="noreferrer">
-                        <FiExternalLink />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <p>{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
+              <div className="project-header">
+                <h3>{project.title}</h3>
+                <div className="project-mini-links">
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                      <FiGithub />
+                    </a>
+                  )}
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noreferrer" aria-label="Live Demo">
+                      <FiExternalLink />
+                    </a>
+                  )}
                 </div>
               </div>
-              <div className="card-shine"></div>
+              <p>{project.description}</p>
+              <div className="project-tags">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage(prev => prev - 1)}
+              disabled={currentPage === 1}
+              className="page-btn"
+            >
+              Prev
+            </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`page-btn ${currentPage === i + 1 ? 'active' : ''}`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => setCurrentPage(prev => prev + 1)}
+              disabled={currentPage === totalPages}
+              className="page-btn"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </motion.div>
     </section>
   );

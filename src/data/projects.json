@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "mp3 from Youtube",
-        "description": "a free tool for downloading mp3 fils from a youtube link",
+        "description": "A free tool for downloading mp3 files from a YouTube link.",
         "tags": [
             "React",
             "API",
@@ -30,7 +30,7 @@
     {
         "id": 3,
         "title": "EldenSetup Back",
-        "description": "the backend for EldenSetup .",
+        "description": "The dedicated backend service for the EldenSetup e-commerce platform.",
         "tags": [
             "Laravel",
             "Backend",
@@ -43,7 +43,7 @@
     {
         "id": 4,
         "title": "StorageHub",
-        "description": "A Laravel-based storage management system.",
+        "description": "A Laravel-based system designed for efficient storage and inventory management.",
         "tags": [
             "Laravel",
             "Backend",
@@ -56,7 +56,7 @@
     {
         "id": 5,
         "title": "flash maker",
-        "description": "an AI powered flash card from PDF generator ",
+        "description": "An AI-powered utility that generates study flashcards directly from PDF documents.",
         "tags": [
             "React",
             "API",
@@ -70,7 +70,7 @@
     {
         "id": 6,
         "title": "irshade",
-        "description": "a comprehensive platform designed to help users deepen their understanding of Islam. Our site provides a variety of resources, including Quran readings, Islamic learning materials, and a community support section for seeking guidance from knowledgeable individuals.",
+        "description": "A comprehensive resource platform for Quran readings, Islamic learning, and community guidance.",
         "tags": [
             "scrum",
             "Backend",
@@ -83,7 +83,7 @@
     {
         "id": 7,
         "title": "Billing app",
-        "description": "a billing system to fill and print out bills.",
+        "description": "A specialized billing system used to generate, manage, and print invoices.",
         "tags": [
             "React",
             "API",
@@ -97,7 +97,7 @@
     {
         "id": 8,
         "title": "Billing App Backend",
-        "description": "backend service for the Billing App, built with Node.js and Express.",
+        "description": "The Node.js and Express backend service powering the Billing App system.",
         "tags": [
             "API",
             "Express",
@@ -110,7 +110,7 @@
     {
         "id": 9,
         "title": "Chatrooms",
-        "description": "a simple chatroom application that allows users to communicate in real-time.",
+        "description": "A real-time communication application allowing users to interact in digital chat rooms.",
         "tags": [
             "scrum",
             "Backend",
@@ -123,7 +123,7 @@
     {
         "id": 10,
         "title": "voice notes app",
-        "description": "a voice notes app that allows users to record and save their notes.",
+        "description": "A simple web application that allows users to record and store voice-based notes.",
         "tags": [
             "JavaScript",
             "html",
@@ -136,7 +136,7 @@
     {
         "id": 11,
         "title": "Jira Like Task Manager",
-        "description": "Task Manager — Full stack (Express + MongoDB Compass + Vanilla Frontend)",
+        "description": "A full-stack task management tool built with Express, MongoDB Compass, and Vanilla JS.",
         "tags": [
             "JavaScript",
             "html",
@@ -149,7 +149,7 @@
     {
         "id": 12,
         "title": "Terminal Solitaire",
-        "description": "basic Solitaire in a terminal like interface ",
+        "description": "A version of the classic Solitaire card game built with a terminal-inspired interface.",
         "tags": [
             "JavaScript",
             "html",
@@ -163,7 +163,7 @@
     {
         "id": 13,
         "title": "Cats Gallery",
-        "description": "a simple cats gallery application that allows users to view ,adopt, add, edit and search for cats.",
+        "description": "A gallery application to view, adopt, add, edit, and search for various cat profiles.",
         "tags": [
             "javascript",
             "API",
@@ -177,7 +177,7 @@
     {
         "id": 14,
         "title": "Knowway",
-        "description": "A full-stack web application for managing online courses with user authentication, course marketplace, points system, quizzes, and in-person course search powered by n8n automation.",
+        "description": "Full-stack course platform featuring authentication, quizzes, and n8n-powered automation.",
         "tags": [
             "javascript",
             "n8n",

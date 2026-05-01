@@ -7,16 +7,15 @@ const About = () => {
     <section id="about" className="about">
       <motion.div
         className="about-container glass-panel"
-        style={{ padding: '2rem' }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
         <div className="about-content">
           <h2>About Me</h2>
           <p>
-            I'm a junior full stack web developer with experience
+            I'm a full stack web developer with experience
             building web applications. I specialize in JavaScript and PHP technologies
             across the whole stack (React.js, Node.js, Express, MongoDB, Laravel, Symfony).
           </p>
@@ -26,24 +25,24 @@ const About = () => {
           </p>
           <div className="about-details">
             <div>
-              <h4>Name:</h4>
+              <h4>Name</h4>
               <p>Bouchama Akram</p>
             </div>
             <div>
-              <h4>Email:</h4>
+              <h4>Email</h4>
               <p>boouchamaakraam@gmail.com</p>
             </div>
             <div>
-              <h4>Experience:</h4>
-              <div className='list'>
-                <li className='exp'>web developer internship at camiverre</li>
-                <li className='exp'>freelance web developer</li>
-                <li className='exp'>freelance 3D designer</li>
-              </div>
+              <h4>Experience</h4>
+              <ul className='list'>
+                <li className='exp'>Web Developer Internship at Camiverre</li>
+                <li className='exp'>Freelance Web Developer</li>
+                <li className='exp'>Freelance 3D Designer</li>
+              </ul>
             </div>
             <div>
-              <h4>Location:</h4>
-              <p>Marrakech ,Morocco </p>
+              <h4>Location</h4>
+              <p>Marrakech, Morocco</p>
             </div>
           </div>
           <a href={CV} download="Akram_Bouchama_CV.pdf" className="btn-primary">
