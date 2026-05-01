@@ -1,0 +1,128 @@
+.cv-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2rem;
+}
+
+.cv-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  height: 90vh;
+  background: #050505;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-modal-header {
+  padding: 1.5rem 2rem;
+  background: #0a0a0a;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cv-modal-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-color);
+  font-family: 'Outfit', sans-serif;
+}
+
+.cv-viewer-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  position: relative;
+}
+
+.cv-viewer-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.cv-modal-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cv-modal-close-btn:hover {
+  background: var(--primary-color);
+  transform: rotate(90deg) scale(1.1);
+  border-color: var(--primary-color);
+}
+
+.cv-modal-actions {
+  padding: 1rem 2rem;
+  background: #0a0a0a;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cv-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: var(--text-color);
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+.cv-download-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 5px 15px rgba(148, 0, 211, 0.3);
+}
+
+@media (max-width: 768px) {
+  .cv-modal-overlay {
+    padding: 1rem;
+  }
+  
+  .cv-modal-content {
+    width: 100%;
+    height: 95vh;
+    border-radius: 16px;
+  }
+
+  .cv-modal-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .cv-modal-header h3 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiGithub, FiExternalLink, FiX } from 'react-icons/fi';
 import '../styles/projects.css';
 import projectsData from '../data/projects.json';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedProject, setSelectedProject] = useState(null);
   const itemsPerPage = 6;
 
   const projectFilters = ['All', 'React', 'Laravel', 'API', 'PHP', 'javascript', 'n8n'];
@@ -25,6 +26,24 @@ const Projects = () => {
     setActiveFilter(filter);
     setCurrentPage(1);
   };
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) setSelectedProject(null);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  // Prevent scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [selectedProject]);
 
   return (
     <section id="projects" className="projects">
@@ -58,17 +77,30 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              onClick={() => setSelectedProject(project)}
             >
               <div className="project-header">
                 <h3>{project.title}</h3>
                 <div className="project-mini-links">
                   {project.github && (
-                    <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      aria-label="GitHub"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <FiGithub />
                     </a>
                   )}
                   {project.live && (
-                    <a href={project.live} target="_blank" rel="noreferrer" aria-label="Live Demo">
+                    <a 
+                      href={project.live} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      aria-label="Live Demo"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <FiExternalLink />
                     </a>
                   )}
@@ -112,6 +144,70 @@ const Projects = () => {
           </div>
         )}
       </motion.div>
+
+      {/* Project Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="project-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="project-modal-content"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                className="modal-close-btn" 
+                onClick={() => setSelectedProject(null)}
+                aria-label="Close modal"
+              >
+                <FiX size={24} />
+              </button>
+
+              <div className="modal-image-container">
+                <img 
+                  src={require(`../assets/${selectedProject.image}`)} 
+                  alt={selectedProject.title} 
+                />
+              </div>
+
+              <div className="modal-info">
+                <h3>{selectedProject.title}</h3>
+                <p>{selectedProject.description}</p>
+                <div className="modal-actions">
+                  {selectedProject.live && (
+                    <a 
+                      href={selectedProject.live} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="modal-link primary"
+                    >
+                      <FiExternalLink /> Live Demo
+                    </a>
+                  )}
+                  {selectedProject.github && (
+                    <a 
+                      href={selectedProject.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="modal-link secondary"
+                    >
+                      <FiGithub /> GitHub Repository
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

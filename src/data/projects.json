@@ -64,8 +64,7 @@
             "vercel",
             "javascript"
         ],
-        "image": "05.jpg",
-        "live": "https://flash-maker.netlify.app"
+        "image": "05.jpg"
     },
     {
         "id": 6,

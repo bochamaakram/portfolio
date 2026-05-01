@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import '../styles/about.css';
 import CV from '../assets/CV.pdf';
+import CVModal from './CVModal';
 
 const About = () => {
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
   return (
     <section id="about" className="about">
       <motion.div
@@ -45,11 +49,21 @@ const About = () => {
               <p>Marrakech, Morocco</p>
             </div>
           </div>
-          <a href={CV} download="Akram_Bouchama_CV.pdf" className="btn-primary">
-            Download CV
-          </a>
+          <button 
+            onClick={() => setIsCVModalOpen(true)} 
+            className="btn-primary"
+            style={{ border: 'none', cursor: 'pointer' }}
+          >
+            View CV
+          </button>
         </div>
       </motion.div>
+
+      <CVModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+        cvUrl={CV} 
+      />
     </section>
   );
 };
