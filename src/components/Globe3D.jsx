@@ -159,8 +159,8 @@ const Cloud = ({ skills }) => {
 const Globe3D = () => {
     // We map icons explicitly
     const mySkills = [
-        { name: 'React', color: '#61DAFB', icon: FaReact },
-        { name: 'TypeScript', color: '#3178C6', icon: SiTypescript },
+        { name: 'React', color: '#61dafbff', icon: FaReact },
+        { name: 'TypeScript', color: '#3179c6ff', icon: SiTypescript },
         { name: 'Node.js', color: '#339933', icon: FaNodeJs },
         { name: 'Next.js', color: '#ffffff', icon: SiNextdotjs },
         { name: 'PostgreSQL', color: '#4169E1', icon: SiPostgresql },
@@ -184,6 +184,7 @@ const Globe3D = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
+                filter: 'blur(1px)',
                 height: '100%',
                 zIndex: 0,
                 pointerEvents: 'none',
