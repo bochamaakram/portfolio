@@ -92,5 +92,41 @@
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* Hide 'Soft Skills' (4th) and 'Tools & DevOps' (5th) on mobile */
+  .skill-card:nth-child(4),
+  .skill-card:nth-child(5) {
+    display: none;
+  }
+
+  .skill-card {
+    padding: 1.25rem 1.5rem;
+    grid-column: span 1;
+  }
+
+  .skill-header {
+    margin-bottom: 1rem;
+  }
+
+  .skill-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  .skill-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .skill-list {
+    gap: 0.5rem;
+  }
+
+  .skill-item {
+    font-size: 0.85rem;
+    color: var(--text-muted);
   }
 }

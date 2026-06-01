@@ -1,3 +1,4 @@
+/* ── Top Header (desktop) ── */
 .header {
   position: fixed;
   top: 0;
@@ -44,46 +45,85 @@ nav {
   color: var(--text-color);
 }
 
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-color);
-  z-index: 1001;
+/* ── Mobile bottom tab bar ── */
+.mobile-bottom-nav {
+  display: none; /* hidden on desktop */
 }
 
 @media (max-width: 768px) {
-  nav {
-    padding: 1rem 1.5rem;
-  }
-
-  .mobile-menu-button {
-    display: block;
-  }
-
+  /* Hide the desktop top nav links on mobile */
   .nav-links {
+    display: none;
+  }
+
+  /* Tighten top bar — just the logo */
+  nav {
+    padding: 0.85rem 1.25rem;
+    justify-content: center;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  /* ── Bottom Tab Bar ── */
+  .mobile-bottom-nav {
+    display: flex;
     position: fixed;
-    top: 0;
+    bottom: 0;
+    left: 0;
     right: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--bg-color);
+    z-index: 1000;
+    background: rgba(8, 8, 8, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .mobile-tab {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
+    gap: 0.25rem;
+    flex: 1;
+    padding: 0.4rem 0.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 12px;
   }
 
-  .nav-links.mobile-open {
-    transform: translateX(0);
+  .mobile-tab:active {
+    transform: scale(0.9);
   }
 
-  .nav-links li a {
-    font-size: 1.5rem;
+  .mobile-tab.active {
+    color: var(--primary-color);
+  }
+
+  .mobile-tab-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-tab.active .mobile-tab-icon {
+    transform: translateY(-2px);
+  }
+
+  .mobile-tab-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* Add bottom padding to the page so content isn't hidden behind the bar */
+  body {
+    padding-bottom: 72px;
   }
 }

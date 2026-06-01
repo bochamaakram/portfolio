@@ -66,13 +66,38 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  .footer {
+    padding: 1.75rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  
   .footer-container {
     flex-direction: column;
     text-align: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  /* Hide text nav links — icons already cover this */
+  .footer-right {
+    display: none;
   }
 
   .footer-center {
-    margin: 0.5rem 0;
+    gap: 1.75rem;
+  }
+  
+  .footer-center a {
+    font-size: 1.5rem;
+    padding: 0.4rem;
+  }
+
+  .footer-left p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Hide secondary tagline on mobile */
+  .footer-left p:last-child {
+    display: none;
   }
 }

@@ -44,13 +44,32 @@
 }
 
 @media (max-width: 576px) {
+  .hero-content {
+    gap: 1rem;
+  }
+
+  /* Hide subtitle on small screens — name + CTA is enough */
+  .hero-content h2 {
+    display: none;
+  }
+
   .hero-buttons {
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
   
   .btn-primary, .btn-secondary {
     width: 100%;
+    padding: 0.9rem 2rem;
+    border-radius: 14px;
+    font-size: 1rem;
+  }
+
+  .hero-content h1 span {
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(148, 0, 211, 0.5));
   }
 }

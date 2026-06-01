@@ -129,9 +129,68 @@
   transform: translateY(-2px);
 }
 
+/* Mobile-only WhatsApp button — hidden on desktop */
+.whatsapp-mobile-btn {
+  display: none;
+}
+
 @media (max-width: 992px) {
   .contact-content {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide info sidebar on mobile — just show the form */
+  .contact-info {
+    display: none;
+  }
+
+  /* Hide the full WhatsApp box — replaced by slim button */
+  .whatsapp-box {
+    display: none;
+  }
+
+  .contact-content {
+    gap: 0;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .contact-form.glass-panel {
+    border-radius: 20px;
+    padding: 1.5rem !important;
+  }
+
+  /* Slim standalone WhatsApp CTA — mobile only */
+  .whatsapp-mobile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding: 0.85rem 1.5rem;
+    background: #25d366;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    width: 100%;
+    text-decoration: none;
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .whatsapp-mobile-btn:hover,
+  .whatsapp-mobile-btn:active {
+    filter: brightness(1.1);
+    transform: scale(0.98);
   }
 }

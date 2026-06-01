@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import '../styles/contact.css';
 
 const Contact = () => {
@@ -145,6 +146,16 @@ const Contact = () => {
             <button type="submit" disabled={isSubmitting} className="btn-primary">
               {isSubmitting ? 'Sending...' : 'Send Message'} <FiSend style={{ marginLeft: '0.5rem' }} />
             </button>
+            {/* Mobile-only WhatsApp CTA */}
+            <a
+              href="https://wa.me/212621111542?text=Hi%20Akram!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect."
+              target="_blank"
+              rel="noreferrer"
+              className="whatsapp-mobile-btn"
+            >
+              <FaWhatsapp size={18} />
+              WhatsApp me instead
+            </a>
           </form>
         </div>
       </motion.div>

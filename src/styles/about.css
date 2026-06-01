@@ -55,20 +55,21 @@
 
 @media (max-width: 768px) {
   .about-container {
-    padding: 3rem 1.5rem !important;
+    padding: 2rem 1.25rem !important;
+    border-radius: 20px;
   }
-  
+
+  .about-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Hide detail grid on mobile — not needed at a glance */
   .about-details {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  
-  .about-details p, .about-details .exp {
-    text-align: center;
-  }
-  
-  .about-details .exp::before {
     display: none;
   }
 }
