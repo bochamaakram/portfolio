@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Monaspace Neon', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.5;
@@ -190,7 +190,7 @@ a {
     box-shadow: 0 4px 15px rgba(148, 0, 211, 0.4);
     font-weight: 600;
   }
-  
+
   .btn-secondary {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);

@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+h1 {
+  font-size: 55px !important;
+}
+
 .hero-content {
   position: relative;
   z-index: 10;
@@ -60,8 +64,9 @@
     gap: 1rem;
     margin-top: 1.5rem;
   }
-  
-  .btn-primary, .btn-secondary {
+
+  .btn-primary,
+  .btn-secondary {
     width: 100%;
     padding: 0.9rem 2rem;
     border-radius: 14px;

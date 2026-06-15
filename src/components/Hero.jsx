@@ -22,7 +22,7 @@ const Hero = () => {
                         />
                     </span>
                 </h1>
-                <h2>
+                <h3>
                     <TypeAnimation
                         sequence={[
                             'Full Stack Web Developer',
@@ -34,7 +34,7 @@ const Hero = () => {
                         speed={50}
                         repeat={Infinity}
                     />
-                </h2>
+                </h3>
                 <div className="hero-buttons">
                     <a href="#projects" className="btn-primary">
                         View Work

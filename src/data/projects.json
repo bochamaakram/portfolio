@@ -186,5 +186,17 @@
         "image": "14.png",
         "github": "https://github.com/bochamaakram/Knowway.git",
         "live": "https://knowway-eight.vercel.app/"
+    },
+    {
+        "id": 15,
+        "title": "Salat Reminder",
+        "description": "a Chrome extension designed to help Muslims balance their digital life with their religious obligations.",
+        "tags": [
+            "javascript",
+            "html",
+            "css"
+        ],
+        "image": "15.png",
+        "github": "https://github.com/bochamaakram/salat-reminder"
     }
 ]

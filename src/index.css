@@ -1,6 +1,8 @@
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/monaspace-neon@5.0.19/index.min.css');
+
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Monaspace Neon', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,7 +10,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Monaspace Neon', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -18,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Monaspace Neon', 'Outfit', sans-serif;
 }
 
 /* Custom Scrollbar Styling */
@@ -49,4 +51,5 @@ h6 {
 /* Firefox scrollbar */
 * {
   scrollbar-color: var(--primary-color) #1e1e2f00;
+  font-family: 'Monaspace Neon', monospace !important;
 }
