@@ -108,11 +108,9 @@ const Projects = () => {
               }}
             >
               {filteredProjects.map((project, index) => {
-                const duration = 40;
                 const angle = 360 / filteredProjects.length;
                 const rotateY = index * angle;
                 const radius = Math.max(400, (filteredProjects.length * 420) / (2 * Math.PI));
-                const animationDelay = `-${index * (duration / filteredProjects.length)}s`;
 
                 return (
                   <div
