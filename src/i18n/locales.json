@@ -1,0 +1,9 @@
+{
+  "en": {
+    "name": "English",
+    "domain": "https://omarchy.org",
+    "formatLocale": "en-US",
+    "ogLocale": "en_US",
+    "manual": true
+  }
+}

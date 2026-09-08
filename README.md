@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Omarchy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Beautiful, Fun & Agentic Linux by DHH.
 
-## Available Scripts
+See https://github.com/omacom/omarchy for more.
 
-In the project directory, you can run:
+## Working on the site
 
-### `npm start`
+Use Node 24 or newer and Python 3.13. Run `npm ci`, then `npm run dev` (or `bin/serve`) to preview the Astro site.
+`npm run build` produces the static site in `dist/client`; `npm run parity`
+checks its page URLs and verifies that passthrough files are unchanged.
+Run `npm run lint`, `npm run typecheck`, and `npm test` before pushing.
+Pull requests run those checks, a build, and parity in GitHub Actions;
+merging to `master` deploys the checked output to GitHub Pages.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Cloudflare Workers previews use the same static output. `wrangler.jsonc`
+runs `npm run build` before uploading `dist/client`, including the installers
+and legacy assets. In Workers Builds, use the repository root, leave the
+separate build command empty, and keep `npx wrangler versions upload` as the
+non-production deploy command. The configured Worker name is `omarchy`.
+Wrangler is pinned in the lockfile; it does not need an Astro server adapter.
+Run `npx wrangler deploy --dry-run` to check the build and configuration
+without uploading or deploying.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Development serves the same installers, downloads, legacy pages, and redirects
+as the assembled site. Page components have separate browser entries so a
+manual or news visit does not load the homepage's interactive showcases.
 
-### `npm test`
+The HTML under the standalone page directories, `themes/`, `manual/`, and
+dated `news/` directories is **content input**, not a second site design.
+`scripts/port_content.py` extracts it into `src/data` on every build. Keep
+layout, navigation, and styling in `src/`; preview through the dev server.
+After editing content inputs, run `npm run port` to refresh the dev data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Edit standalone page content in its existing `index.html`.
+- Edit the homepage announcement in `src/data/banner.json` (`null` hides it).
+- Run `bin/build-news` after editing Markdown in `content/news/`; it updates
+  article inputs, images, and the RSS feed.
+- Run `bin/build-manual [path/to/omarchy/manual]` to refresh manual inputs and
+  images. The Astro site builds its table of contents and search index.
 
-### `npm run build`
+Social cards use the site's theme palettes. `npm run build:social` regenerates
+the 1200×630 PNGs under `public/brand/social/`; the normal build also runs it.
+Each page selects a theme from its canonical path, so translations of a page
+share the same card and rebuilds keep the selection stable. After changing
+palettes or adding a theme in `src/lib/site-themes.ts`, regenerate and commit
+the images. Social platforms may retain cached previews for already-shared links.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The screensaver and the Discord redirect are still served
+directly. Their styles, fonts, and scripts remain under `assets/`, alongside
+shared images and public downloads.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Adding your theme
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Community themes are listed on [omarchy.org/themes](https://omarchy.org/themes/).
+To get yours on the page, open a pull request with two things.
 
-### `npm run eject`
+**1. A screenshot.** Take a 16:9 shot of the theme on a real desktop, then
+convert it:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    magick preview.png -strip -resize '1200>' -quality 80 your-theme.webp
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Put the result in `assets/themes/`. Name the file after the theme, lowercase
+and hyphenated — `your-theme.webp`. Aim for 1200x675; keep it under about
+100KB so the page stays quick to load.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**2. An entry.** Add a figure block to `themes/index.html`, in alphabetical
+order among the others:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```html
+<figure class="themes__theme">
+  <a href="https://github.com/you/your-theme"
+    ><img
+      src="/assets/themes/your-theme.webp"
+      alt="Your Theme theme"
+      loading="lazy"
+      decoding="async"
+  /></a>
+  <figcaption>
+    <a href="https://github.com/you/your-theme">Your Theme</a>
+  </figcaption>
+</figure>
+```
 
-## Learn More
+Both links point at the theme's own repository, which is where people
+install it from and where it needs to keep living.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### The screenshot matters
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The page is a grid of screenshots — that image is the whole pitch for your
+theme, so give it the same care you gave the palette. Show a real session
+with a terminal and an editor in it, not an empty desktop. Use the theme's own
+wallpaper. Don't scale a small capture up, and don't include a cursor, a
+notification, or anything personal you'd rather not publish.
 
-### Code Splitting
+Pull requests without a screenshot can't be merged, because there's nothing
+to put on the page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Plugins
 
-### Analyzing the Bundle Size
+Plugins aren't in this repository. They're listed on
+[plugins.omarchy.org](https://plugins.omarchy.org/) from the
+[marketplace repo](https://github.com/omacom/omarchy-plugin-marketplace),
+which has its own submission guide.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Translations
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The site uses shared components with separate language catalogues and domain builds.
+English changes publish immediately. GitHub Actions fills in missing main-site copy and news translations with Muse afterward, then deploys the language sites. Existing human translations are preserved. See [the translation guide](docs/translations.md) for queues, local previews, and adding a language or domain.

@@ -1,0 +1,6 @@
+/* Commands and paths retain their literal order within right-to-left prose. */
+html[dir='rtl'] :is(code, pre, kbd) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+}
