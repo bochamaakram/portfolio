@@ -64,6 +64,16 @@ export function SiteFooter({ path: _path }: { path: string }) {
                   GitHub
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.space.akrambouchama.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-sm ${footerLink}`}
+                >
+                  My Desktop like portfolio
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

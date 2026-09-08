@@ -12,8 +12,8 @@ const ASCII_ART = `
 ▀███████████ ▀▀█████▄    ▀▀███▀▀▀▀▀   ▀███████████ ███   ███   ███      ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███        ▀▀███▀▀▀▀███▀  ▀███████████ ███   ███   ███ ▀███████████ 
   ███    ███   ███▐██▄   ▀███████████   ███    ███ ███   ███   ███        ███    ██▄ ███    ███ ███    ███ ███    █▄    ███    ███     ███    ███ ███   ███   ███   ███    ███ 
   ███    ███   ███ ▀███▄   ███    ███   ███    ███ ███   ███   ███        ███    ███ ███    ███ ███    ███ ███    ███   ███    ███     ███    ███ ███   ███   ███   ███    ███ 
-  ███    █▀    ███   ▀█▀   ███    █▀    ███    █▀   ▀█   ███   █▀       ▄█████████▀   ▀██████▀  ████████▀  ████████▀    ███    █▀      ███    █▀   ▀█   ███   █▀    ███    █▀ 
-  `
+  ███    █▀    ███   ▀█▀   ███    █▀    ███    █▀   ▀█   ███   █▀       ▄█████████▀   ▀██████▀  ████████▀  ████████▀    ███    █▀      ███    █▀   ▀█   ███   █▀    ███    █▀  
+`
 export function HomePage() {
   const [intro, setIntro] = useState(false)
   const [painted, setPainted] = useState(false)
@@ -188,12 +188,12 @@ export function HomePage() {
           <div className="md:w-2/3 mt-6 md:mt-0">
             <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col gap-4 max-w-xl">
               <input type="hidden" name="access_key" value="fff8147f-22c9-46cc-9251-4af470db95f5" />
-              
+
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="name" className="text-sm text-text-muted">Name</label>
                 <input type="text" id="name" name="name" required className="bg-transparent border border-border-subtle rounded-md px-4 py-2.5 text-text-secondary focus:outline-none focus:border-text-muted transition-colors" />
               </div>
-              
+
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="email" className="text-sm text-text-muted">Email</label>
                 <input type="email" id="email" name="email" required className="bg-transparent border border-border-subtle rounded-md px-4 py-2.5 text-text-secondary focus:outline-none focus:border-text-muted transition-colors" />
