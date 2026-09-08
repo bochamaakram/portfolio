@@ -1,10 +1,8 @@
 /**
- * The Omarchy wordmark as what it actually is: a 81x19 bitmap. Generated
- * from the site's brand/omarchy-wordmark.svg, whose 211 rects all land exactly
+ * The hero wordmark as what it actually is: a 81x19 bitmap. Generated
+ * from the site's brand/akram-mark.svg, whose 211 rects all land exactly
  * on a 51x50 unit grid. The hero draws these cells on the same grid as the
  * background field, so logo and field can never fall out of alignment.
- *
- * Regenerate with: npm run refresh-wordmark
  */
 export const WORDMARK_WIDTH = 81
 export const WORDMARK_HEIGHT = 19

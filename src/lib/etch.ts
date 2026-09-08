@@ -1,9 +1,8 @@
 /**
  * ttfx's laseretch, played on the field's own cells.
  *
- * ttfx (github.com/omacom/ttfx) is a terminal engine: it takes text, runs an
- * effect over a grid of character cells, and each frame hands back a symbol
- * and a colour per cell. Nothing about it is pixels. So the wordmark bitmap
+ * ttfx is a terminal engine that runs an effect over a grid of character
+ * cells; nothing about it is pixels. So the wordmark bitmap
  * goes in as text - one block character per lit cell, blanks elsewhere - and
  * the cells that come back are painted straight into the lattice the field
  * already draws on. The effect's timing, beam and sparks are ttfx's own; the
@@ -96,7 +95,7 @@ export const EFFECTS = [
   'wipe',
 ] as const
 /** Fired with `{ detail: name }` to play an effect on the word now. */
-export const ETCH_EVENT = 'omarchy-etch'
+export const ETCH_EVENT = 'akram-etch'
 
 /**
  * Runs in the head, before the first paint: when the effect is going to

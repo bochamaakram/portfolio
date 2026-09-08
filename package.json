@@ -1,5 +1,5 @@
 {
-  "name": "omarchy-site",
+  "name": "akram-bouchama",
   "private": true,
   "type": "module",
   "imports": {
@@ -34,7 +34,7 @@
     "@types/node": "24.13.3",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.5",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "d3-geo": "3.1.1",
     "eslint": "10.10.0",
     "prettier": "3.9.6",
@@ -48,6 +48,6 @@
     "wrangler": "4.129.0"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=22.12.0"
   }
 }

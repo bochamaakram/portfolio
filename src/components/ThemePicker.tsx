@@ -20,7 +20,7 @@ import {
 import { useIsNarrow } from '@/lib/use-media-query'
 import { cn } from '@/lib/utils'
 
-/** Omarchy's card slant: a 2.5% lean, top edge shifted right of the bottom. */
+/** The card slant: a 2.5% lean, top edge shifted right of the bottom. */
 const PARALLELOGRAM = 'polygon(2.5% 0%, 100% 0%, 97.5% 100%, 0% 100%)'
 
 /** Inset in the same coordinate box to keep the slanted border edges parallel. */
@@ -106,10 +106,9 @@ export function ThemePicker() {
     switchTheme(next.id, () => flushSync(() => close()), { frosted: true })
   }, [close])
 
-  // The entry point is T. Omarchy's own chord still works for anyone not on
-  // Omarchy, but on Omarchy itself Hyprland binds it at the compositor and
-  // consumes it before the browser sees a thing, so the one audience most
-  // likely to try it is the one audience it can never reach.
+  // The entry point is T. The Super + Ctrl + Shift + Space chord is also
+  // accepted, but a desktop compositor can bind it and consume it before the
+  // browser ever sees it, so T stays the reliable entry point.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const chord =
@@ -210,7 +209,7 @@ export function ThemePicker() {
               </span>
               <span className="mt-1 block text-[13px] leading-relaxed text-text-secondary">
                 {t(
-                  'Press T, or tap here. Inside Omarchy it is Super + Ctrl + Shift + Space.',
+                  'Press T, or tap here.',
                 )}
               </span>
             </span>

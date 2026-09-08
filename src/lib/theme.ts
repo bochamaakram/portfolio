@@ -6,15 +6,15 @@ import { SITE_THEMES } from './site-themes.ts'
 export { SITE_THEMES, type SiteTheme } from './site-themes.ts'
 
 export const DEFAULT_THEME = 'tokyo-night'
-export const THEME_KEY = 'omarchy-site-theme'
+export const THEME_KEY = 'akram-site-theme'
 /** Fired on <window> after a theme lands, for canvas renderers to re-read. */
-export const THEME_EVENT = 'omarchy-theme'
+export const THEME_EVENT = 'akram-theme'
 /** Ask the mounted ThemePicker to open (footer link, welcome notice). */
-export const OPEN_PICKER_EVENT = 'omarchy-open-picker'
+export const OPEN_PICKER_EVENT = 'akram-open-picker'
 /** Fired with detail { open } whenever the picker opens or closes. */
-export const PICKER_STATE_EVENT = 'omarchy-picker-state'
+export const PICKER_STATE_EVENT = 'akram-picker-state'
 /** Set once the user has seen the picker or dismissed the welcome notice. */
-export const HINT_KEY = 'omarchy-theme-hint-seen'
+export const HINT_KEY = 'akram-theme-hint-seen'
 
 /** The page mark as a 12x8 bitmap; the favicon and click stamp both draw it. */
 const MARK_ROWS = [

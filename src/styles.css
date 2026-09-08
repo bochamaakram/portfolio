@@ -147,7 +147,7 @@
 
 /* ------------------------------------------------------------- theme values */
 
-/* Base palettes come from omacom/omarchy themes/<id>/colors.toml; intermediate shades are mixed. */
+/* Palette values come from the site's theme set; intermediate shades are mixed. */
 
 :root,
 [data-theme='tokyo-night'] {
@@ -2329,32 +2329,4 @@ h6 {
 
 .page-subtitle {
   font-family: var(--font-mono);
-}
-
-.brand__preview {
-  width: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--t-field-crest) 0 26.316%,
-    var(--t-field-hover) 26.316% 36.842%,
-    var(--t-field-lit) 36.842% 57.895%,
-    var(--t-field-mid) 57.895% 73.684%,
-    var(--t-field-dim) 73.684% 100%
-  );
-  mask: var(--brand-mask) no-repeat center / 100% 100%;
-  -webkit-mask: var(--brand-mask) no-repeat center / 100% 100%;
-}
-.brand__preview--wordmark {
-  aspect-ratio: 4131 / 950;
-  --brand-mask: url('/brand/omarchy-wordmark.svg');
-}
-.brand__preview--logo {
-  aspect-ratio: 1;
-  max-width: 20rem;
-  --brand-mask: url('/brand/omarchy-logo.svg');
-}
-.brand__preview--oma {
-  aspect-ratio: 722 / 300;
-  max-width: 30rem;
-  --brand-mask: url('/brand/oma-logo-mask.svg');
 }

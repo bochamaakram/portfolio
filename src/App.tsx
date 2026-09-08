@@ -8,14 +8,12 @@ import { ProjectPicker } from '@/components/ProjectPicker'
 import { HomePage } from '@/pages/HomePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { watchOutbound } from '@/lib/outbound'
-import { watchBrandDownloads } from '@/lib/brand-downloads'
 import { readTheme } from '@/lib/theme'
 
 function AppLayout() {
   const location = useLocation()
 
   useEffect(() => {
-    watchBrandDownloads()
     watchOutbound()
   }, [])
 

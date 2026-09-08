@@ -4,8 +4,8 @@
  * { x, y, cw, ch } in CSS px (client coords at measure time) whenever the
  * field's geometry changes; GRID_CLEAR_EVENT fires when the hero unmounts.
  */
-export const GRID_EVENT = 'omarchy-pixel-grid'
-export const GRID_CLEAR_EVENT = 'omarchy-pixel-grid-clear'
+export const GRID_EVENT = 'akram-pixel-grid'
+export const GRID_CLEAR_EVENT = 'akram-pixel-grid-clear'
 
 export type PixelGrid = { x: number; y: number; cw: number; ch: number }
 

@@ -33,8 +33,8 @@ export function HomePage() {
   }, [painted])
 
   useEffect(() => {
-    if (!sessionStorage.getItem('omarchy-intro-seen')) {
-      sessionStorage.setItem('omarchy-intro-seen', 'true')
+    if (!sessionStorage.getItem('akram-intro-seen')) {
+      sessionStorage.setItem('akram-intro-seen', 'true')
       setIntro(true)
     }
   }, [])
@@ -105,7 +105,7 @@ export function HomePage() {
                 className="h-10 px-8"
                 nativeButton={true}
                 onClick={() =>
-                  (window.location.href = 'mailto:contact@akrambouchama.com')
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
               >
                 Contact Me

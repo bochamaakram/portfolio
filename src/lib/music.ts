@@ -17,7 +17,7 @@
  * the way the page opened; the live reading is for when it can be heard.
  */
 
-export const MUSIC_EVENT = 'omarchy-music'
+export const MUSIC_EVENT = 'akram-music'
 
 export const TRACK = {
   title: 'We Can Fix Everything (The Ultimate Machine)',

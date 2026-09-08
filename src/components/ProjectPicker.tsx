@@ -4,15 +4,29 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import { useIsNarrow } from '@/lib/use-media-query'
 import { cn } from '@/lib/utils'
 
+import imgEldenSetup from '@/assets/eleden-setup.png'
+import imgVoiceNotesApp from '@/assets/voice-notes-app.png'
+import imgKnowway from '@/assets/Knowway.png'
+import imgCatsGallery from '@/assets/Cats-Gallery.png'
+import imgSalatReminder from '@/assets/Salat-Reminder.png'
+import imgTerminalSoliter from '@/assets/terminal-soliter.png'
+import imgIrshade from '@/assets/irshade.png'
+import imgMp3Downloader from '@/assets/mp3-downloader.png'
+import imgStorageHub from '@/assets/StorageHub.jpg'
+
 export const SITE_PROJECTS = [
-  { id: '02', name: 'EldenSetup', url: '#' },
-  { id: '10', name: 'voice notes app', url: '#' },
-  { id: '14', name: 'knoway', url: '#' },
+  { id: 'EldenSetup', name: 'Elden Setup', url: '#', img: imgEldenSetup },
+  { id: 'voice-notes-app', name: 'Voice Notes App', url: '#', img: imgVoiceNotesApp },
+  { id: 'Knowway', name: 'Knowway', url: '#', img: imgKnowway },
+  { id: 'Cats-Gallery', name: 'Cats Gallery', url: '#', img: imgCatsGallery },
+  { id: 'Salat-Reminder', name: 'Salat Reminder', url: '#', img: imgSalatReminder },
+  { id: 'terminal-soliter', name: 'Terminal Solitaire', url: '#', img: imgTerminalSoliter },
+  { id: 'irshade', name: 'Irshade', url: '#', img: imgIrshade },
+  { id: 'mp3-downloader', name: 'MP3 Downloader', url: '#', img: imgMp3Downloader },
+  { id: 'StorageHub', name: 'Storage Hub', url: '#', img: imgStorageHub },
 ]
 
-const previewSrc = (id: string) => `/assets/images/${id}.png`
-
-/** Omarchy's card slant: a 2.5% lean, top edge shifted right of the bottom. */
+/** The card slant: a 2.5% lean, top edge shifted right of the bottom. */
 const PARALLELOGRAM = 'polygon(2.5% 0%, 100% 0%, 97.5% 100%, 0% 100%)'
 
 /** Inset in the same coordinate box to keep the slanted border edges parallel. */
@@ -76,7 +90,7 @@ export function ProjectPicker() {
       const img = new Image()
       img.fetchPriority = 'low'
       img.decoding = 'async'
-      img.src = previewSrc(project.id)
+      img.src = project.img
       img.decode?.().catch(() => {})
     }
   }, [])
@@ -198,7 +212,7 @@ export function ProjectPicker() {
                       }}
                     >
                       <img
-                        src={previewSrc(project.id)}
+                        src={project.img}
                         alt={`${project.name} project preview`}
                         width={1800}
                         height={1012}
@@ -208,7 +222,7 @@ export function ProjectPicker() {
                           if (img.dataset.retried) return
                           img.dataset.retried = ''
                           window.setTimeout(() => {
-                            img.src = `${previewSrc(project.id)}?retry`
+                            img.src = `${project.img}?retry`
                           }, 1000)
                         }}
                         className="w-full select-none object-cover"

@@ -1,109 +1,52 @@
-# Omarchy
+# Akram Bouchama — Portfolio
 
-Beautiful, Fun & Agentic Linux by DHH.
+The personal site of [Akram Bouchama](https://akrambouchama.com), a Full Stack
+Web Developer based in Marrakech, Morocco. Single-page experience with a
+canvas field, theme picker, and an interactive wordmark.
 
-See https://github.com/omacom/omarchy for more.
+## Stack
 
-## Working on the site
+- [Vite](https://vite.dev) + React 19 + TypeScript
+- [React Router](https://reactrouter.com) for routing
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Base UI](https://base-ui.com) for the popover interfaces
 
-Use Node 24 or newer and Python 3.13. Run `npm ci`, then `npm run dev` (or `bin/serve`) to preview the Astro site.
-`npm run build` produces the static site in `dist/client`; `npm run parity`
-checks its page URLs and verifies that passthrough files are unchanged.
-Run `npm run lint`, `npm run typecheck`, and `npm test` before pushing.
-Pull requests run those checks, a build, and parity in GitHub Actions;
-merging to `master` deploys the checked output to GitHub Pages.
+## Getting started
 
-Cloudflare Workers previews use the same static output. `wrangler.jsonc`
-runs `npm run build` before uploading `dist/client`, including the installers
-and legacy assets. In Workers Builds, use the repository root, leave the
-separate build command empty, and keep `npx wrangler versions upload` as the
-non-production deploy command. The configured Worker name is `omarchy`.
-Wrangler is pinned in the lockfile; it does not need an Astro server adapter.
-Run `npx wrangler deploy --dry-run` to check the build and configuration
-without uploading or deploying.
+Node 22.12+ is required.
 
-Development serves the same installers, downloads, legacy pages, and redirects
-as the assembled site. Page components have separate browser entries so a
-manual or news visit does not load the homepage's interactive showcases.
-
-The HTML under the standalone page directories, `themes/`, `manual/`, and
-dated `news/` directories is **content input**, not a second site design.
-`scripts/port_content.py` extracts it into `src/data` on every build. Keep
-layout, navigation, and styling in `src/`; preview through the dev server.
-After editing content inputs, run `npm run port` to refresh the dev data.
-
-- Edit standalone page content in its existing `index.html`.
-- Edit the homepage announcement in `src/data/banner.json` (`null` hides it).
-- Run `bin/build-news` after editing Markdown in `content/news/`; it updates
-  article inputs, images, and the RSS feed.
-- Run `bin/build-manual [path/to/omarchy/manual]` to refresh manual inputs and
-  images. The Astro site builds its table of contents and search index.
-
-Social cards use the site's theme palettes. `npm run build:social` regenerates
-the 1200×630 PNGs under `public/brand/social/`; the normal build also runs it.
-Each page selects a theme from its canonical path, so translations of a page
-share the same card and rebuilds keep the selection stable. After changing
-palettes or adding a theme in `src/lib/site-themes.ts`, regenerate and commit
-the images. Social platforms may retain cached previews for already-shared links.
-
-The screensaver and the Discord redirect are still served
-directly. Their styles, fonts, and scripts remain under `assets/`, alongside
-shared images and public downloads.
-
-## Adding your theme
-
-Community themes are listed on [omarchy.org/themes](https://omarchy.org/themes/).
-To get yours on the page, open a pull request with two things.
-
-**1. A screenshot.** Take a 16:9 shot of the theme on a real desktop, then
-convert it:
-
-    magick preview.png -strip -resize '1200>' -quality 80 your-theme.webp
-
-Put the result in `assets/themes/`. Name the file after the theme, lowercase
-and hyphenated — `your-theme.webp`. Aim for 1200x675; keep it under about
-100KB so the page stays quick to load.
-
-**2. An entry.** Add a figure block to `themes/index.html`, in alphabetical
-order among the others:
-
-```html
-<figure class="themes__theme">
-  <a href="https://github.com/you/your-theme"
-    ><img
-      src="/assets/themes/your-theme.webp"
-      alt="Your Theme theme"
-      loading="lazy"
-      decoding="async"
-  /></a>
-  <figcaption>
-    <a href="https://github.com/you/your-theme">Your Theme</a>
-  </figcaption>
-</figure>
+```sh
+npm ci
+npm run dev       # local dev server (default port 3113)
+npm run build     # type-check + production build into dist/
+npm run preview   # serve the built site locally
 ```
 
-Both links point at the theme's own repository, which is where people
-install it from and where it needs to keep living.
+## Checks
 
-### The screenshot matters
+```sh
+npm run lint        # eslint
+npm run typecheck   # tsc --noEmit
+npm run check       # prettier --check
+```
 
-The page is a grid of screenshots — that image is the whole pitch for your
-theme, so give it the same care you gave the palette. Show a real session
-with a terminal and an editor in it, not an empty desktop. Use the theme's own
-wallpaper. Don't scale a small capture up, and don't include a cursor, a
-notification, or anything personal you'd rather not publish.
+`npm run build` runs the type check before bundling, so a clean build also
+passes typecheck.
 
-Pull requests without a screenshot can't be merged, because there's nothing
-to put on the page.
+## Project layout
 
-## Plugins
+- `public/brand/` — brand assets and the theme social cards under `social/`.
+- `src/data/` — the wordmark and "not found" bitmaps that the field renders.
+- `src/lib/` — theme system, i18n, SEO, and browser-effect helpers.
+- `src/components/` — layout, hero field, theme picker, project picker.
+- `src/pages/` — route components.
 
-Plugins aren't in this repository. They're listed on
-[plugins.omarchy.org](https://plugins.omarchy.org/) from the
-[marketplace repo](https://github.com/omacom/omarchy-plugin-marketplace),
-which has its own submission guide.
+## Deployment
 
-## Translations
+The site is built with Vite to `dist/` and can be hosted anywhere that
+serves static files. The custom domain `akrambouchama.com` is set in `CNAME`
+and referenced by canonical URLs, Open Graph tags, and the sitemap. A
+`robots.txt` and a single-page `sitemap.xml` are emitted in `public/`.
 
-The site uses shared components with separate language catalogues and domain builds.
-English changes publish immediately. GitHub Actions fills in missing main-site copy and news translations with Muse afterward, then deploys the language sites. Existing human translations are preserved. See [the translation guide](docs/translations.md) for queues, local previews, and adding a language or domain.
+Netlify: set the build command to `npm run build` and the publish directory
+to `dist`. GitHub Pages: use the `pages` workflow in `.github/workflows/`.
