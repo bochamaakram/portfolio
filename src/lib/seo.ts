@@ -14,7 +14,7 @@ export function socialImage(path: string) {
   }
   const theme = SITE_THEMES[hash % SITE_THEMES.length]
   return {
-    url: `${SITE_URL}/brand/social/${theme.id}.png`,
+    url: `${SITE_URL}/brand/social/${theme.id}.webp`,
     width: '1200',
     height: '630',
     alt: 'Akram Bouchama - Full Stack Web Developer',
