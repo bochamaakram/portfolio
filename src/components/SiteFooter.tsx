@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { PixelBackdrop } from '@/components/HeroShader'
 import { GithubIcon } from '@/components/icons'
 import { useTopLink } from '@/lib/hash-scroll'
+import { ASCII_ART } from '@/components/HomeContent'
 
 const focusRing =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
@@ -30,9 +31,9 @@ export function SiteFooter({ path: _path }: { path: string }) {
               data-quiet
               className={`group block ${focusRing}`}
             >
-              <span className="font-semibold tracking-tight text-brand transition-colors duration-150 ease-out group-hover:text-(--t-field-hover)">
-                Akram Bouchama
-              </span>
+              <pre className="select-none font-mono text-[2px] leading-[1.15] text-brand transition-colors duration-150 ease-out group-hover:text-(--t-field-hover) xs:text-[2.5px] sm:text-[3px] md:text-[3.5px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {ASCII_ART}
+              </pre>
             </Link>
             <p
               data-quiet

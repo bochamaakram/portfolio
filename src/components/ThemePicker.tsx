@@ -78,7 +78,7 @@ export function ThemePicker() {
     restoreFocus.current?.focus({
       focusVisible: restoreRing.current,
       preventScroll: true,
-    })
+    } as FocusOptions)
   }, [])
 
   /** Where a finger went down, and how far it has travelled since. */
@@ -194,7 +194,7 @@ export function ThemePicker() {
     return (
       <div
         role="status"
-        className="notice-in fixed top-[104px] right-4 z-(--z-dropdown) w-72 sm:top-[68px]"
+        className="notice-in fixed top-[104px] right-4 z-(--z-dropdown) hidden w-72 sm:block sm:top-[68px]"
       >
         <div className="ring-elevation relative bg-surface">
           <button

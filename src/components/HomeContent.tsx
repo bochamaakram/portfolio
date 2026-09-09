@@ -4,8 +4,8 @@ import { HeroShader } from '@/components/HeroShader'
 import { EtchPicker } from '@/components/EtchPicker'
 import { Button } from '@/components/ui/button'
 
-const ASCII_ART = `   
-  ▄████████    ▄█   ▄█▄    ▄████████    ▄████████   ▄▄▄▄███▄▄▄▄        ▀█████████▄   ▄██████▄  ███    █▄   ▄████████    ▄█    █▄       ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████ 
+export const ASCII_ART = `   
+   ▄████████    ▄█   ▄█▄    ▄████████    ▄████████   ▄▄▄▄███▄▄▄▄        ▀█████████▄   ▄██████▄  ███    █▄   ▄████████    ▄█    █▄       ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████ 
   ███    ███   ███ ▄███▀   ███    ███   ███    ███ ▄██▀▀▀███▀▀▀██▄        ███    ███ ███    ███ ███    ███ ███    ███   ███    ███     ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ 
   ███    ███   ███▐██▀     ███    ███   ███    ███ ███   ███   ███        ███    ███ ███    ███ ███    ███ ███    █▀    ███    ███     ███    ███ ███   ███   ███   ███    ███ 
   ███    ███  ▄█████▀     ▄███▄▄▄▄██▀   ███    ███ ███   ███   ███       ▄███▄▄▄██▀  ███    ███ ███    ███ ███         ▄███▄▄▄▄███▄▄   ███    ███ ███   ███   ███   ███    ███ 
@@ -65,7 +65,7 @@ export function HomePage() {
             <pre
               data-hero-stagger
               style={{ '--stagger': 0 } as React.CSSProperties}
-              className="mx-auto w-fit max-w-full overflow-x-auto overflow-y-hidden text-center font-mono text-[6px] leading-[1.15] text-brand sm:text-[8px] md:text-[10px] lg:text-xs [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="mx-auto w-fit max-w-full overflow-x-auto overflow-y-hidden text-center font-mono text-[3.5px] leading-[1.15] text-brand xs:text-[4.5px] sm:text-[8px] md:text-[10px] lg:text-xs [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {ASCII_ART}
             </pre>
@@ -122,13 +122,13 @@ export function HomePage() {
         className="border-b border-border-subtle"
         style={{ background: 'var(--t-field-bg)' }}
       >
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:flex md:justify-between md:gap-12">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6 md:flex md:justify-between md:gap-12">
           <div className="md:w-1/3">
             <h2 className="font-sans text-xs tracking-widest text-text-muted uppercase">
               About Me
             </h2>
           </div>
-          <div className="md:w-2/3 mt-6 md:mt-0">
+          <div className="md:w-2/3 mt-4 md:mt-0">
             <p className="max-w-2xl text-lg leading-relaxed text-text-secondary [text-wrap:pretty]">
               I'm Akram Bouchama, a Full Stack Web Developer based in Marrakech,
               Morocco. I build fast, focused web experiences end to end — from the
@@ -150,13 +150,13 @@ export function HomePage() {
         className="border-b border-border-subtle"
         style={{ background: 'var(--t-field-bg)' }}
       >
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:flex md:flex-row-reverse md:justify-between md:gap-12">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6 md:flex md:flex-row-reverse md:justify-between md:gap-12">
           <div className="md:w-1/3 md:text-right">
             <h2 className="font-sans text-xs tracking-widest text-text-muted uppercase">
               Technical Skills
             </h2>
           </div>
-          <div className="md:w-2/3 mt-6 md:mt-0">
+          <div className="md:w-2/3 mt-4 md:mt-0">
             <p className="max-w-2xl text-lg leading-relaxed text-text-secondary [text-wrap:pretty]">
               My day-to-day stack is the modern JavaScript ecosystem: React and
               TypeScript on the front end, Node.js on the back end, with Tailwind
@@ -179,13 +179,13 @@ export function HomePage() {
         className="border-b border-border-subtle"
         style={{ background: 'var(--t-field-bg)' }}
       >
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:flex md:justify-between md:gap-12">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6 md:flex md:justify-between md:gap-12">
           <div className="md:w-1/3">
             <h2 className="font-sans text-xs tracking-widest text-text-muted uppercase">
               Contact
             </h2>
           </div>
-          <div className="md:w-2/3 mt-6 md:mt-0">
+          <div className="md:w-2/3 mt-4 md:mt-0">
             <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col gap-4 max-w-xl">
               <input type="hidden" name="access_key" value="fff8147f-22c9-46cc-9251-4af470db95f5" />
 
@@ -204,7 +204,7 @@ export function HomePage() {
                 <textarea id="message" name="message" required rows={5} className="bg-transparent border border-border-subtle rounded-md px-4 py-2.5 text-text-secondary focus:outline-none focus:border-text-muted transition-colors resize-y"></textarea>
               </div>
 
-              <Button type="submit" variant="outline" className="w-fit mt-4">
+              <Button type="submit" variant="outline" className="w-full sm:w-fit mt-4">
                 Send Message
               </Button>
             </form>
